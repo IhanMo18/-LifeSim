@@ -1,3 +1,5 @@
+using LifeSlim.Core.Util;
+
 namespace LifeSlim.Core.Model;
 
 public class Dna
@@ -37,5 +39,25 @@ public class Dna
         return Random.Shared.Next(min, max + 1);
     }
 
-    // public Dna ApplyMutation(Mutation mutation);
+    public void ApplyMutation(Mutation mutation)
+    {
+        var random = new Random();
+        
+        if (mutation.ShouldApply(random))
+        {
+            switch (mutation.Stat)
+            {
+                case StatType.Strength: Stats.Strength += mutation.ChangeAmount; break;
+                case StatType.Speed: Stats.Speed += mutation.ChangeAmount; break;
+                case StatType.Vision: Stats.Vision += mutation.ChangeAmount; break;
+                case StatType.Defense: Stats.Defense += mutation.ChangeAmount; break;
+                case StatType.Aggression: Stats.Aggression += mutation.ChangeAmount; break;
+            }
+            Console.WriteLine($"{mutation.Stat} is mutated");
+        }
+        else
+        {
+            Console.WriteLine($"{mutation.Stat} is not mutated");
+        }   
+    }
 }

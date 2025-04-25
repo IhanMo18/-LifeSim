@@ -49,24 +49,7 @@ public class Creature
 
     public void Mutate(Mutation mutation)
     {
-        var random = new Random();
-        
-        if (mutation.ShouldApply(random))
-        {
-            switch (mutation.Stat)
-            {
-                case StatType.Strength: Dna.Stats.Strength += mutation.ChangeAmount; break;
-                case StatType.Speed: Dna.Stats.Speed += mutation.ChangeAmount; break;
-                case StatType.Vision: Dna.Stats.Vision += mutation.ChangeAmount; break;
-                case StatType.Defense: Dna.Stats.Defense += mutation.ChangeAmount; break;
-                case StatType.Aggression: Dna.Stats.Aggression += mutation.ChangeAmount; break;
-            }
-            Console.WriteLine($"{mutation.Stat} is mutated");
-        }
-        else
-        {
-            Console.WriteLine($"{mutation.Stat} is not mutated");
-        }
+        Dna.ApplyMutation(mutation);
     }
     
     public void Die()
