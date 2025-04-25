@@ -4,14 +4,77 @@
     "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj": {}
   },
   "projects": {
-    "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj": {
+    "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj",
-        "projectName": "LifeSlim.Infrastructure",
-        "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj",
+        "projectUniqueName": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj",
+        "projectName": "LifeSlim.Application",
+        "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj",
         "packagesPath": "/Users/ihan/.nuget/packages/",
-        "outputPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/obj/",
+        "outputPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ihan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj": {
+                "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj",
+        "projectName": "LifeSlim.Core",
+        "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj",
+        "packagesPath": "/Users/ihan/.nuget/packages/",
+        "outputPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ihan/.nuget/NuGet/NuGet.Config"
@@ -43,6 +106,75 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj",
+        "projectName": "LifeSlim.Infrastructure",
+        "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj",
+        "packagesPath": "/Users/ihan/.nuget/packages/",
+        "outputPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ihan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj": {
+                "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[10.0.0-preview.3.25171.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
