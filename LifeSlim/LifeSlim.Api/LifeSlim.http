@@ -1,0 +1,6 @@
+@LifeSlim_HostAddress = http://localhost:5250
+
+GET {{LifeSlim_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSlim.Api", "LifeSlim.Api\LifeSlim.Api.csproj", "{75BB1A9A-DB78-401B-B181-D31209C23D25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSlim.Core", "LifeSlim.Core\LifeSlim.Core.csproj", "{B1B37D79-D1E1-418D-A303-1211448EAC91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSlim.Infrastructure", "LifeSlim.Infrastructure\LifeSlim.Infrastructure.csproj", "{ED14F048-EE98-41C3-86A0-A6C388BD096A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSlim.Application", "LifeSlim.Application\LifeSlim.Application.csproj", "{D148D0F1-990D-43D2-8266-7DC08EC3646A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75BB1A9A-DB78-401B-B181-D31209C23D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75BB1A9A-DB78-401B-B181-D31209C23D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75BB1A9A-DB78-401B-B181-D31209C23D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75BB1A9A-DB78-401B-B181-D31209C23D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1B37D79-D1E1-418D-A303-1211448EAC91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B37D79-D1E1-418D-A303-1211448EAC91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B37D79-D1E1-418D-A303-1211448EAC91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B37D79-D1E1-418D-A303-1211448EAC91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED14F048-EE98-41C3-86A0-A6C388BD096A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED14F048-EE98-41C3-86A0-A6C388BD096A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED14F048-EE98-41C3-86A0-A6C388BD096A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED14F048-EE98-41C3-86A0-A6C388BD096A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D148D0F1-990D-43D2-8266-7DC08EC3646A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D148D0F1-990D-43D2-8266-7DC08EC3646A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D148D0F1-990D-43D2-8266-7DC08EC3646A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D148D0F1-990D-43D2-8266-7DC08EC3646A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
