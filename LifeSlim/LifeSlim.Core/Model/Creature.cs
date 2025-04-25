@@ -10,10 +10,8 @@ public class Creature
         Dna = dna;
     }
     
-    public int Hp { get; set; } = 100;
-    
+    public int Health { get; set; } = 100;
     public Guid Id { get; private set; } = Guid.NewGuid();
-    
     public Dna Dna { get; private set; }
     public int Age { get; private set; } = 0;
     public bool IsAlive { get; private set; } = true;
@@ -27,12 +25,10 @@ public class Creature
             IsAlive = false;
         }
     }
-
     public bool CanReproduce()
     {
-        return IsAlive && Age >=5 && Hp >= 50;
+        return IsAlive && Age >=5 && Health >= 50;
     }
-
     public Creature ReproduceWith(Creature partner)
     {
         if (this.CanReproduce() && partner.CanReproduce())
@@ -46,17 +42,14 @@ public class Creature
         }
         throw new Exception("Creature can't reproduce");
     }
-
     public void Mutate(Mutation mutation)
     {
         Dna.ApplyMutation(mutation);
     }
-    
     public void Die()
     {
         IsAlive = false;
     }
-    
     public static Guid SelectRandomRaceId(Guid raceIdA, Guid raceIdB)
     {
         return Random.Shared.Next(0, 2) == 0 ? raceIdA : raceIdB;
