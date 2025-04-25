@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LifeSlim.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a3e70cb8971d851bc251ad87a2878dcacdefd95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+384274a61662cce9a04ca3363c3ed26566fa1095")]
 [assembly: System.Reflection.AssemblyProductAttribute("LifeSlim.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LifeSlim.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

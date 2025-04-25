@@ -1,5 +1,6 @@
+using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
-using LifeSlim.Core.Movement.Interface;
+using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Movement;
 

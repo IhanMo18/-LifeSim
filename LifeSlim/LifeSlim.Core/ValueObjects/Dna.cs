@@ -1,6 +1,6 @@
 using LifeSlim.Core.Util;
 
-namespace LifeSlim.Core.Model;
+namespace LifeSlim.Core.ValueObjects;
 
 public class Dna
 {
@@ -11,6 +11,11 @@ public class Dna
     {
         Stats = stats;
         Mutations = mutations;
+    }
+
+    public static Dna FromBaseStats(Stats stats)
+    {
+        return new Dna(stats, new List<Mutation>());
     }
 
     public static Dna Combine(Dna parentA, Dna parentB)

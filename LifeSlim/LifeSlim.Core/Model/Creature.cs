@@ -1,13 +1,17 @@
+using LifeSlim.Core.Interface;
+using LifeSlim.Core.Services;
 using LifeSlim.Core.Util;
+using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 
-public class Creature
+public class Creature : IFactory
 {
-    public Creature(Guid raceId, Dna dna)
+    public Creature(Guid raceId, Dna dna,Position position)
     {
         RaceId = raceId;
         Dna = dna;
+        Position = position;
     }
     
     public int Health { get; set; } = 100;
@@ -33,19 +37,6 @@ public class Creature
     {
         return IsAlive && Age >=5 && Health >= 50;
     }
-    public Creature ReproduceWith(Creature partner)
-    {
-        if (this.CanReproduce() && partner.CanReproduce())
-        {
-            var childDna = Dna.Combine(this.Dna,partner.Dna);
-            var childRaceId = SelectRandomRaceId(this.RaceId,partner.RaceId);
-            
-            return new Creature(
-                childRaceId, 
-                childDna);
-        }
-        throw new Exception("Creature can't reproduce");
-    }
     public void Mutate(Mutation mutation)
     {
         Dna.ApplyMutation(mutation);
@@ -54,9 +45,6 @@ public class Creature
     {
         IsAlive = false;
     }
-    public static Guid SelectRandomRaceId(Guid raceIdA, Guid raceIdB)
-    {
-        return Random.Shared.Next(0, 2) == 0 ? raceIdA : raceIdB;
-    }
+    
 
 }
