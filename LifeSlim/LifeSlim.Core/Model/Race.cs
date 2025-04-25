@@ -1,10 +1,11 @@
 using LifeSlim.Core.Exceptions;
+using LifeSlim.Core.Interface;
 using LifeSlim.Core.Util;
 using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 
-public class Race
+public class Race : IFactory
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
     public string Name { get; private set; }
@@ -22,6 +23,9 @@ public class Race
         ColorCode = colorCode;
         BaseStats = baseStats;
     }
+
+    public Race(){}
+    
 
     public void AddCreature(Creature creature)
     {

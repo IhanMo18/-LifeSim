@@ -1,25 +1,34 @@
 using LifeSlim.Core.EventLoading;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.System;
+using LifeSlim.Infrastructure.Factories;
 
-namespace LifeSlim.Application;
+namespace LifeSlim.Infrastructure.Simulation;
 
 public class SimulationEngine
 {
     private readonly MovementSystem _movementSystem;
     private readonly World _world;
+    Factory factory
 
     public SimulationEngine(World world, MovementSystem movementSystem,bool loadDefaultEvents = true)
     {
         _world = world;
         _movementSystem = movementSystem;
-        if (loadDefaultEvents) EventLoader.LoadDefaultEvents(_world); 
+        if (loadDefaultEvents) EventLoader.LoadDefaultEvents(_world);
+        new Factory(_world);
     }
 
     public void Tick()
     {
+        
         _world.YearTime++;
         Console.WriteLine($"Avanzo un anio del time : {_world.YearTime}");
+
+        var creatureFactory = (RaceFactory)factory().GetFactory("race");
+        creatureFactory.Build();
+       
+        
         
         // 1. Ejecutar eventos globales
         var eventsToTrigger = _world.ScheduledEvents
@@ -41,6 +50,8 @@ public class SimulationEngine
         }
 
         // 3. Reproducción
+        
+        
 
         // 4. Envejecimiento y muerte
         foreach (var creature in _world.Creatures)
