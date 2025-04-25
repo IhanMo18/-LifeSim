@@ -16,7 +16,7 @@ public class World
         public int Width { get; set; }
         public int Height { get; set; }
     
-        private static object[,] grid;
+        private object[,] grid;
     
         public List<Creature> Creatures { get; set; } = new();
         public int YearTime { get; set; }
@@ -38,7 +38,7 @@ public class World
             return new Position(x,y);
         }
        
-        private static bool IsOcupied(int x, int y)
+        private bool IsOcupied(int x, int y)
         {
             return grid[x, y] != null;
         }

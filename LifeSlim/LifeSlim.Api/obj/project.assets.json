@@ -1916,19 +1916,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/ihan/.nuget/packages/": {}
+    "C:\\Users\\david\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Api/LifeSlim.Api.csproj",
+      "projectUniqueName": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Api\\LifeSlim.Api.csproj",
       "projectName": "LifeSlim.Api",
-      "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Api/LifeSlim.Api.csproj",
-      "packagesPath": "/Users/ihan/.nuget/packages/",
-      "outputPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Api/obj/",
+      "projectPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Api\\LifeSlim.Api.csproj",
+      "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/ihan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -1940,14 +1940,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj": {
-              "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Application/LifeSlim.Application.csproj"
+            "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Application\\LifeSlim.Application.csproj": {
+              "projectPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Application\\LifeSlim.Application.csproj"
             },
-            "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj": {
-              "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj"
+            "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\LifeSlim.Core.csproj": {
+              "projectPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\LifeSlim.Core.csproj"
             },
-            "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj": {
-              "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Infrastructure/LifeSlim.Infrastructure.csproj"
+            "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Infrastructure\\LifeSlim.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Infrastructure\\LifeSlim.Infrastructure.csproj"
             }
           }
         }
@@ -1992,7 +1992,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

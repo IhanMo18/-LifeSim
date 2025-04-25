@@ -42,7 +42,7 @@ public class SimulationEngine
             creature.Age++;
         }
 
-        _world.Creatures.RemoveAll(c => c.IsAlive()==false);
+        _world.Creatures.RemoveAll(c => c.IsAlive==false);
         Console.WriteLine($"🕒 Año {_world.YearTime}...");
         // TODO: Guardar estado o hacer log si quieres
     }
