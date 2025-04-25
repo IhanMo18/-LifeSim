@@ -1,13 +1,14 @@
-using LifeSlim.Core.Entities;
+using LifeSlim.Core.Model;
+using LifeSlim.Core.Movement;
 
-namespace LifeSlim.Core.Movement;
+namespace LifeSlim.Core.System;
 
 public class MovementSystem(MovementStrategyFactory strategyFactory)
 {
     
-    public void Move(World world, Crature crature)
+    public void Move(World world, Creature crature)
     {
         var strategy = strategyFactory.GetStrategy(crature);
-        crature.position=strategy.NextPosition(world,crature);
+        crature.Position=strategy.NextPosition(world,crature);
     }
 }

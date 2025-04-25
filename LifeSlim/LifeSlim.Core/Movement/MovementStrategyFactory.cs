@@ -1,3 +1,5 @@
+using LifeSlim.Core.Model;
+
 namespace LifeSlim.Core.Movement;
 
 public class MovementStrategyFactory

@@ -1,6 +1,6 @@
 using LifeSlim.Core.Events;
 
-namespace LifeSlim.Core.Entities;
+namespace LifeSlim.Core.Model;
 
 public class World
 {

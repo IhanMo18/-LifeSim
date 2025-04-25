@@ -1,4 +1,4 @@
-using LifeSlim.Core.Entities;
+using LifeSlim.Core.Model;
 
 namespace LifeSlim.Core.Movement;
 
@@ -14,7 +14,6 @@ public class FleeStrategy : IMovementStrategy
             Math.Clamp(creature.Position.X + dirX, 0, world.Width - 1), 
             Math.Clamp(creature.Position.Y + dirY, 0, world.Height - 1)
             );
-        
     }
     
 }

@@ -1,4 +1,4 @@
-using LifeSlim.Core.Entities;
+using LifeSlim.Core.Model;
 
 namespace LifeSlim.Core.Events;
 

@@ -1,4 +1,4 @@
-using LifeSlim.Core.Entities;
+using LifeSlim.Core.Model;
 
 namespace LifeSlim.Core.Movement;
 
@@ -13,7 +13,8 @@ public class RandomMovementStrategy :IMovementStrategy
         var newX = creature.Position.X + dx;
         var newY = creature.Position.Y + dy;
         
-        if(newX < 0 || newX >= world.Width || newY < 0 || newY >= world.Height)
-        return creature.Position;
+        if(newX < 0 || newX >= world.Width || newY < 0 || newY >= world.Height) return creature.Position;
+        
+        return new Position(newX, newY);
     }
 }
