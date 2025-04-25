@@ -9,6 +9,7 @@ public class MovementSystem(MovementStrategyFactory strategyFactory)
     public void Move(World world, Creature crature)
     {
         var strategy = strategyFactory.GetStrategy(crature);
-        crature.Position=strategy.NextPosition(world,crature);
+        var position=strategy.NextPosition(world,crature);
+        world.MoveCreature(crature,position.X,position.Y);
     }
 }

@@ -11,4 +11,10 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LifeSlim.Application\LifeSlim.Application.csproj" />
+      <ProjectReference Include="..\LifeSlim.Core\LifeSlim.Core.csproj" />
+      <ProjectReference Include="..\LifeSlim.Infrastructure\LifeSlim.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

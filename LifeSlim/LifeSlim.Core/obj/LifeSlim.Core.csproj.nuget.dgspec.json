@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\LifeSlim.Core.csproj": {}
+    "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\LifeSlim.Core.csproj": {
+    "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\LifeSlim.Core.csproj",
+        "projectUniqueName": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj",
         "projectName": "LifeSlim.Core",
-        "projectPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\LifeSlim.Core.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\RiderProjects\\LifeSim\\LifeSlim\\LifeSlim.Core\\obj\\",
+        "projectPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/LifeSlim.Core.csproj",
+        "packagesPath": "/Users/ihan/.nuget/packages/",
+        "outputPath": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim/LifeSlim.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/ihan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

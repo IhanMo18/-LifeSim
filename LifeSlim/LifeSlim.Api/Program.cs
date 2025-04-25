@@ -1,9 +1,19 @@
+using LifeSlim.Application;
+using LifeSlim.Core.Model;
+using LifeSlim.Core.Movement;
+using LifeSlim.Core.System;
+using LifeSlim.Infrastructure.Simulation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddSingleton<World>(new World(50, 50)); // Mundo único y compartido
+builder.Services.AddSingleton<MovementStrategyFactory>();
+builder.Services.AddSingleton<MovementSystem>();
+builder.Services.AddSingleton<SimulationEngine>();
+builder.Services.AddHostedService<SimulationHostedService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
