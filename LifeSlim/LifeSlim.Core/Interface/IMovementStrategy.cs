@@ -1,6 +1,7 @@
 using LifeSlim.Core.Model;
+using LifeSlim.Core.ValueObjects;
 
-namespace LifeSlim.Core.Movement.Interface;
+namespace LifeSlim.Core.Interface;
 
 public interface IMovementStrategy
 {

@@ -1,4 +1,4 @@
-namespace LifeSlim.Core.Model;
+namespace LifeSlim.Core.ValueObjects;
 
 public class Stats
 {

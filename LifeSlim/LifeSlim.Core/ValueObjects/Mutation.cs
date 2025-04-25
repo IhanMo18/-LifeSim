@@ -1,6 +1,6 @@
 using LifeSlim.Core.Util;
 
-namespace LifeSlim.Core.Model;
+namespace LifeSlim.Core.ValueObjects;
 
 public class Mutation
 {

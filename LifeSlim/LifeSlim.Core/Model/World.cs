@@ -1,5 +1,6 @@
 using LifeSlim.Core.Events;
 using LifeSlim.Core.System;
+using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 public class World

@@ -1,5 +1,6 @@
 using LifeSlim.Core.Exceptions;
 using LifeSlim.Core.Util;
+using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 
@@ -8,16 +9,18 @@ public class Race
     public Guid Id { get; private set; } = Guid.NewGuid();
     public string Name { get; private set; }
     public string ColorCode { get; private set; } 
-    public List<Creature> Creatures { get; private set; }
+    public List<Creature> Creatures { get;set; }
+    
+    public Stats BaseStats { get;set; }
     
     public int AvailableStatPoints { get; private set; } = 5;
     public int Age { get; private set; } = 0;
 
-    public Race(string name,string colorCode,List<Creature> creatures)
+    public Race(string name,string colorCode, Stats baseStats)
     {
         Name = name;
         ColorCode = colorCode;
-        Creatures = creatures;
+        BaseStats = baseStats;
     }
 
     public void AddCreature(Creature creature)
