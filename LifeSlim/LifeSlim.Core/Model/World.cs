@@ -9,8 +9,6 @@ public class World
             Width = width;
             Height = height;
             grid = new object[width, height];
-            ScheduledEvents.Add(new AcidRainEvent(10));
-            ScheduledEvents.Add(new AcidRainEvent(20));
         }
     
         public int Width { get; set; }
