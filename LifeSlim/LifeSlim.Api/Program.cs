@@ -1,4 +1,10 @@
 using LifeSlim.Application;
+using LifeSlim.Application.GameEngine;
+using LifeSlim.Application.Interfaces;
+using LifeSlim.Application.UseCases.Race.Commands;
+using LifeSlim.Application.UseCases.Race.CommandsHandler;
+using LifeSlim.Core.Factories;
+using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.Movement;
 using LifeSlim.Core.System;
@@ -9,7 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddSingleton<World>(new World(50, 50)); // Mundo único y compartido
+builder.Services.AddSingleton<World>(new World(5, 5)); // Mundo único y compartido
+builder.Services.AddScoped<ICommandHandler<CreateRaceCommand, Race>, CreateRaceCommandHandler>();
+builder.Services.AddTransient<ICreatureFactory, CreatureFactory>();
 builder.Services.AddSingleton<MovementStrategyFactory>();
 builder.Services.AddSingleton<MovementSystem>();
 builder.Services.AddSingleton<SimulationEngine>();

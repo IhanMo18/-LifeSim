@@ -1,11 +1,9 @@
-using LifeSlim.Core.Interface;
-using LifeSlim.Core.Services;
-using LifeSlim.Core.Util;
+
 using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 
-public class Creature : IFactory
+public class Creature 
 {
     public Creature(Guid raceId, Dna dna,Position position)
     {
@@ -15,9 +13,7 @@ public class Creature : IFactory
     }
     
     public int Health { get; set; } = 100;
-
     public int Hunger { get; set; } = 0;
-    
     public Position Position { get; set; }
     public Guid Id { get; private set; } = Guid.NewGuid();
     public Dna Dna { get; set; }

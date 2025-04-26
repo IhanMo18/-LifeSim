@@ -16,11 +16,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23aa9f3a-a6f8-4993-a610-ee7e1e0fb3c9" name="Changes" comment="" />
+    <list default="true" id="23aa9f3a-a6f8-4993-a610-ee7e1e0fb3c9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LifeSlim.Application/Interfaces/ICommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LifeSlim.Application/Interfaces/ICommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LifeSlim.Application/UseCases/Race/Commands/CreateRaceCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LifeSlim.Application/UseCases/Race/CommandsHandler/CreateRaceCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LifeSlim.Core/Factories/CreatureFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LifeSlim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LifeSlim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/CommandHandlers/ AdvanceYearsCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/CommandHandlers/ AdvanceYearsCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/LifeSlim.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/LifeSlim.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/SimulationEngine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/GameEngine/SimulationEngine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Interface/ICreatureFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Interface/ICreatureFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Interface/IFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Model/Creature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Model/Creature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Model/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Model/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/System/MovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/System/MovementSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/Factories/CreatureFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/Factories/Factory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/Simulation/SimulationHostedService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/Simulation/SimulationHostedService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/rider.project.model.nuget.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -38,8 +73,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/IhanMo18/LifeSim.git&quot;,
-    &quot;accountId&quot;: &quot;beecdc10-0e46-44f5-b2f3-7786cca95992&quot;
+    &quot;url&quot;: &quot;https://github.com/IhanMo18/LifeSim&quot;,
+    &quot;accountId&quot;: &quot;ba0a27ae-a90a-451a-a46e-71bdf8c4bfca&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -78,10 +113,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.LifeSlim: http.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "David",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/Users/ihan/Desktop/C#Projects/LifeSim/LifeSlim",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -214,6 +251,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="23aa9f3a-a6f8-4993-a610-ee7e1e0fb3c9" name="Changes" comment="" />
@@ -223,6 +261,8 @@
       <updated>1745547947531</updated>
       <workItem from="1745547948667" duration="3850000" />
       <workItem from="1745586514840" duration="2318000" />
+      <workItem from="1745633461939" duration="7718000" />
+      <workItem from="1745700273866" duration="4550000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <option name="closed" value="true" />
@@ -369,5 +409,50 @@
     <MESSAGE value="feat(Core)--&gt; create Action MoveCreature into {World.cs} using a different strategies" />
     <MESSAGE value="{Update gordo}" />
     <option name="LAST_COMMIT_MESSAGE" value="{Update gordo}" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LifeSlim.Core/Factories/CreatureFactory.cs</url>
+          <line>9</line>
+          <properties documentPath="C:\Users\david\RiderProjects\LifeSim\LifeSlim\LifeSlim.Core\Factories\CreatureFactory.cs" containingFunctionPresentation="Method 'CreateCreature'">
+            <startOffsets>
+              <option value="242" />
+            </startOffsets>
+            <endOffsets>
+              <option value="243" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LifeSlim.Core/System/MovementSystem.cs</url>
+          <line>8</line>
+          <properties documentPath="C:\Users\david\RiderProjects\LifeSim\LifeSlim\LifeSlim.Core\System\MovementSystem.cs" containingFunctionPresentation="Method 'Move'">
+            <startOffsets>
+              <option value="219" />
+            </startOffsets>
+            <endOffsets>
+              <option value="220" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LifeSlim.Application/GameEngine/SimulationEngine.cs</url>
+          <line>94</line>
+          <properties documentPath="C:\Users\david\RiderProjects\LifeSim\LifeSlim\LifeSlim.Application\GameEngine\SimulationEngine.cs" containingFunctionPresentation="Method 'Tick'">
+            <startOffsets>
+              <option value="2963" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3002" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

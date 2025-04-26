@@ -2,7 +2,7 @@ using LifeSlim.Core.Model;
 
 namespace LifeSlim.Core.Interface;
 
-public interface ICreatureFactory : IFactory
+public interface ICreatureFactory
 {
-    IFactory Build();
+    Creature CreateCreature(World world, Race race);
 }

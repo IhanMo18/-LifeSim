@@ -9,7 +9,7 @@ public class World
         {
             Width = width;
             Height = height;
-            grid = new object[width, height];
+            grid = new string[width, height];
             ScheduledEvents.Add(new AcidRainEvent(10));
             ScheduledEvents.Add(new AcidRainEvent(20));
         }
@@ -17,7 +17,7 @@ public class World
         public int Width { get; set; }
         public int Height { get; set; }
     
-        private object[,] grid;
+        public string[,] grid { get; set; }
     
         public List<Creature> Creatures { get; set; } = new();
         public int YearTime { get; set; }
@@ -36,6 +36,7 @@ public class World
                 y = random.Next(0, Height);
             } 
             while (IsOcupied(x, y));
+            Console.WriteLine($"{x}-{y}");
             return new Position(x,y);
         }
        
@@ -54,8 +55,8 @@ public class World
                 return false;
 
             // Actualiza grid y worldMap si aplica
-            grid[currentPos.X, currentPos.Y] = null;
-            grid[newX, newY] = creature;
+            grid[currentPos.X, currentPos.Y] = "";
+            grid[newX, newY] = creature.Id.ToString(); //quiero guardar los id de las criaturas en las posiciones 
 
             var oldKey = (currentPos.X, currentPos.Y);
             var newKey = (newX, newY);
