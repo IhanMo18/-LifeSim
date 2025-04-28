@@ -20,6 +20,8 @@ public class Creature
     public int Age { get; set; } = 0;
     public bool IsAlive { get; set; } = true;
     public Guid RaceId { get; private set; }
+    
+    public (int X, int Y) CurrentDirection { get; private set; }
 
     public void AgeOneYear()
     {
@@ -40,6 +42,17 @@ public class Creature
     public void Die()
     {
         IsAlive = false;
+    }
+    
+    
+    public void MoveTo(Position newPosition)
+    {
+        CurrentDirection = (
+            newPosition.X - Position.X,
+            newPosition.Y - Position.Y
+        );
+            
+        Position = newPosition;
     }
     
 

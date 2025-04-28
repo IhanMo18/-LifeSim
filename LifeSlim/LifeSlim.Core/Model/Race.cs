@@ -5,7 +5,7 @@ using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 
-public class Race : IFactory
+public class Race 
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
     public string Name { get; private set; }

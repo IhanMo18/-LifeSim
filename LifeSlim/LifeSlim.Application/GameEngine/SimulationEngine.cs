@@ -30,15 +30,15 @@ public class SimulationEngine
             .Where(e => e.TriggerYear == _world.YearTime)
             .ToList();
 
-        foreach (var ev in eventsToTrigger)
-        {
-            ev.Apply(_world);
-        }
+        // foreach (var ev in eventsToTrigger)
+        // {
+        //     ev.Apply(_world);
+        // }
         
         //Crear Raza
         CreateRaceCommand createRaceCommand = new CreateRaceCommand
         {
-            BaseStats = new (1,1,1,1,1),
+            BaseStats = new (1,1,3,1,1),
             Name = "Gorgons",
             ColorCode = "#421eaf"
         };
@@ -47,14 +47,18 @@ public class SimulationEngine
         var race = await createRaceCommandHandler.Handle(createRaceCommand); 
 
         
-        if (_world.Creatures.Count<1)
+        if (_world.Creatures.Count<2)
         {
             try
             {
                 var creature = _creatureFactory.CreateCreature(_world, race);
+                var creature2 = _creatureFactory.CreateCreature(_world, race);
+                
                 if (creature != null && creature.Position != null)
                 {
                     _world.Creatures.Add(creature);
+                    _world.Creatures.Add(creature2);
+                    _world.grid[creature2.Position.X, creature2.Position.Y] = $"{creature2.Id}";
                     _world.grid[creature.Position.X, creature.Position.Y] = $"{creature.Id}" ;
                 }
                 else
@@ -92,7 +96,9 @@ public class SimulationEngine
         // 2. Mover criaturas
         foreach (var creature in _world.Creatures)
         {
-            _movementSystem.Move(_world, creature);
+            Console.WriteLine($"Criatura id: {creature.Id}");
+            _movementSystem.MoveCreature(_world, creature);
+          
             
         }
 
