@@ -7,7 +7,9 @@ using LifeSlim.Core.Factories;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.Movement;
+using LifeSlim.Core.Mutations;
 using LifeSlim.Core.System;
+using LifeSlim.Infrastructure;
 using LifeSlim.Infrastructure.Simulation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,13 +17,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddSingleton<World>(new World(5, 5)); // Mundo único y compartido
-builder.Services.AddScoped<ICommandHandler<CreateRaceCommand, Race>, CreateRaceCommandHandler>();
-builder.Services.AddTransient<ICreatureFactory, CreatureFactory>();
+builder.Services.AddSingleton<World>(new World(10, 10)); // Mundo único y compartido
+
+builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
+    .FromAssembliesOf(typeof(CreateRaceCommandHandler))
+    .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)))
+    .AsImplementedInterfaces()
+    .WithScopedLifetime());
+
+builder.Services.AddScoped<ICommandDispatcher,CommandDispatcher>();
+builder.Services.AddSingleton<ICreatureFactory, CreatureFactory>();
+builder.Services.AddSingleton<IMutationFactory, MutationFactory>();
 builder.Services.AddSingleton<MovementStrategyFactory>();
+builder.Services.AddSingleton<MutationStrategyFactory>();
+builder.Services.AddSingleton<MutationSystem>();
 builder.Services.AddSingleton<MovementSystem>();
 builder.Services.AddSingleton<SimulationEngine>();
 builder.Services.AddHostedService<SimulationHostedService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

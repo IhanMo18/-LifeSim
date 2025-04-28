@@ -23,9 +23,11 @@ public class SimulationHostedService : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await _engine.Tick();
+            var scope = _serviceProvider.CreateScope();
+            var commandDispatcher = scope.ServiceProvider.GetRequiredService<ICommandDispatcher>();
+            await _engine.Tick(commandDispatcher);
             Console.WriteLine("Tick ejecutado");
-            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken); // Simular cada 10s
+            await Task.Delay(TimeSpan.FromSeconds(4), stoppingToken); // Simular cada 10s
         }
     }
 }
