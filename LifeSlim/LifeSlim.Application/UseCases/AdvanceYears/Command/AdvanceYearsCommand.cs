@@ -1,6 +1,6 @@
-namespace LifeSlim.Application.Command;
+namespace LifeSlim.Application.UseCases.AdvanceYears.Command;
 
-public class AdvanceYearsCommand : ICommand
+public class AdvanceYearsCommand
 {
     public int YearsToAdvance { get; }
 

@@ -1,8 +1,7 @@
-using LifeSlim.Application.Command;
 using LifeSlim.Application.GameEngine;
-using LifeSlim.Core.Model;
+using LifeSlim.Application.UseCases.AdvanceYears.Command;
 
-namespace LifeSlim.Application.CommandHandlers;
+namespace LifeSlim.Application.UseCases.AdvanceYears.CommandHandlers;
 
 public class AdvanceYearsCommandHandler
 {

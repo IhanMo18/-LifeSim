@@ -1,6 +1,7 @@
 using LifeSlim.Application.Interfaces;
 using LifeSlim.Application.UseCases.Race.Commands;
 using LifeSlim.Application.UseCases.Race.CommandsHandler;
+using LifeSlim.Core.Builders;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.System;
@@ -35,22 +36,17 @@ public class SimulationEngine
         //     ev.Apply(_world);
         // }
         
-        //Crear Raza
-        CreateRaceCommand createRaceCommand = new CreateRaceCommand
-        {
-            BaseStats = new (1,1,3,1,1),
-            Name = "Gorgons",
-            ColorCode = "#421eaf"
-        };
-        CreateRaceCommandHandler createRaceCommandHandler = new CreateRaceCommandHandler();
-        
-        var race = await createRaceCommandHandler.Handle(createRaceCommand); 
-
-        
         if (_world.Creatures.Count<2)
         {
             try
             {
+              var race = new RaceBuilder()
+                    .WhitName("Orco")
+                    .WhitColorCode("#efffa")
+                    .WhitStats(1, 1, 1, 1, 1)
+                    .Build();
+              
+              
                 var creature = _creatureFactory.CreateCreature(_world, race);
                 var creature2 = _creatureFactory.CreateCreature(_world, race);
                 
@@ -72,13 +68,6 @@ public class SimulationEngine
                 Console.WriteLine($"Error al crear criatura: {ex.Message}");
             }  
         }
-        //Aniadir Criaturas 
-        // for (int i = 0; i < 5; i++)
-        // {
-        //     
-        //     // _world.Creatures.Add(_creatureFactory.CreateCreature(_world, new Race("Gorgons","#42afee",new Stats(1,1,1,1,1))));
-        // }
-
        
         for (var i = 0; i < _world.Width; i++)
         {
