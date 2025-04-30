@@ -1,7 +1,6 @@
 using LifeSlim.Application.Interfaces;
 using LifeSlim.Application.UseCases.Race.Commands;
 using LifeSlim.Application.UseCases.Race.CommandsHandler;
-using LifeSlim.Core.Builders;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.System;
@@ -31,30 +30,31 @@ public class SimulationEngine
             .Where(e => e.TriggerYear == _world.YearTime)
             .ToList();
 
-        // foreach (var ev in eventsToTrigger)
-        // {
-        //     ev.Apply(_world);
-        // }
+        foreach (var ev in eventsToTrigger)
+        {
+            ev.Apply(_world);
+        }
         
-        if (_world.Creatures.Count<2)
+        //Crear Raza
+        CreateRaceCommand createRaceCommand = new CreateRaceCommand
+        {
+            BaseStats = new (1,1,1,1,1),
+            Name = "Gorgons",
+            ColorCode = "#421eaf"
+        };
+        CreateRaceCommandHandler createRaceCommandHandler = new CreateRaceCommandHandler();
+        
+        var race = await createRaceCommandHandler.Handle(createRaceCommand); 
+
+        
+        if (_world.Creatures.Count<1)
         {
             try
             {
-              var race = new RaceBuilder()
-                    .WhitName("Orco")
-                    .WhitColorCode("#efffa")
-                    .WhitStats(1, 1, 1, 1, 1)
-                    .Build();
-              
-              
                 var creature = _creatureFactory.CreateCreature(_world, race);
-                var creature2 = _creatureFactory.CreateCreature(_world, race);
-                
                 if (creature != null && creature.Position != null)
                 {
                     _world.Creatures.Add(creature);
-                    _world.Creatures.Add(creature2);
-                    _world.grid[creature2.Position.X, creature2.Position.Y] = $"{creature2.Id}";
                     _world.grid[creature.Position.X, creature.Position.Y] = $"{creature.Id}" ;
                 }
                 else
@@ -68,6 +68,13 @@ public class SimulationEngine
                 Console.WriteLine($"Error al crear criatura: {ex.Message}");
             }  
         }
+        //Aniadir Criaturas 
+        // for (int i = 0; i < 5; i++)
+        // {
+        //     
+        //     // _world.Creatures.Add(_creatureFactory.CreateCreature(_world, new Race("Gorgons","#42afee",new Stats(1,1,1,1,1))));
+        // }
+
        
         for (var i = 0; i < _world.Width; i++)
         {
@@ -85,9 +92,7 @@ public class SimulationEngine
         // 2. Mover criaturas
         foreach (var creature in _world.Creatures)
         {
-            Console.WriteLine($"Criatura id: {creature.Id}");
-            _movementSystem.MoveCreature(_world, creature);
-          
+            _movementSystem.Move(_world, creature);
             
         }
 
