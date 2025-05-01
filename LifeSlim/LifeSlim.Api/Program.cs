@@ -1,7 +1,7 @@
 using LifeSlim.Application;
 using LifeSlim.Application.GameEngine;
+using LifeSlim.Application.Hubs;
 using LifeSlim.Application.Interfaces;
-using LifeSlim.Application.UseCases.Race.Commands;
 using LifeSlim.Application.UseCases.Race.CommandsHandler;
 using LifeSlim.Core.Factories;
 using LifeSlim.Core.Interface;
@@ -13,11 +13,16 @@ using LifeSlim.Infrastructure;
 using LifeSlim.Infrastructure.Simulation;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers()
+    .AddNewtonsoftJson();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddSingleton<World>(new World(10, 10)); // Mundo único y compartido
+builder.Services.AddSignalR(options => options.EnableDetailedErrors = true );
+
+
+builder.Services.AddSingleton<World>(new World(30, 30)); // Mundo único y compartido
 
 builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
     .FromAssembliesOf(typeof(CreateRaceCommandHandler))
@@ -35,8 +40,21 @@ builder.Services.AddSingleton<MovementSystem>();
 builder.Services.AddSingleton<SimulationEngine>();
 builder.Services.AddHostedService<SimulationHostedService>();
 
-var app = builder.Build();
+// En Program.cs
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowFrontend", policy => {
+        policy.WithOrigins("http://localhost:63342") // Origen de tu frontend (ajusta el puerto)
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); // Solo si usas cookies o autenticación
+    });
+});
 
+
+
+var app = builder.Build();
+app.UseWebSockets(); 
+app.UseCors("AllowFrontend");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -63,6 +81,8 @@ app.MapGet("/weatherforecast", () =>
         return forecast;
     })
     .WithName("GetWeatherForecast");
+
+app.MapHub<GameHub>("/gameHub");
 
 app.Run();
 

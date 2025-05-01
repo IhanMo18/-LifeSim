@@ -25,7 +25,7 @@ public class MutationFactory : IMutationFactory
         
         return new Mutation(
             randomStatType,
-            random.Next(5),
+            random.Next(1,6),
             random.NextDouble()
         );
     }

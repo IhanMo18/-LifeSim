@@ -13,12 +13,14 @@ public class Creature
     }
     
     public int Health { get; set; } = 100;
-    public int Hunger { get; set; } = 0;
+    public int Hunger { get; set; } = 71;
     public Position Position { get; set; }
     public Guid Id { get; private set; } = Guid.NewGuid();
     public Dna Dna { get; set; }
     public int Age { get; set; } = 0;
     public bool IsAlive { get; set; } = true;
+    
+    public bool IsPair { get; set; } = false;
     public Guid RaceId { get; private set; }
 
     public void AgeOneYear()

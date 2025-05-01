@@ -20,6 +20,7 @@ public class ReproductionService
                 childDna,
                 position);
         }
+        Console.WriteLine("No pueden reproducirse");
         throw new Exception("No pueden reproducirse");
     }
     

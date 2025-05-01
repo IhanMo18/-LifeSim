@@ -1,8 +1,11 @@
+using LifeSlim.Application.Hubs;
 using LifeSlim.Application.Interfaces;
 using LifeSlim.Application.UseCases.Race.Commands;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.System;
+using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 
 
 namespace LifeSlim.Application.GameEngine;
@@ -14,13 +17,17 @@ public class SimulationEngine
     private readonly World _world;
     private readonly ICreatureFactory _creatureFactory;
     
+    private readonly IHubContext<GameHub> _hubContext;
     
-    public SimulationEngine(World world, MovementSystem movementSystem, ICreatureFactory creatureFactory, MutationSystem mutationSystem)
+    
+    
+    public SimulationEngine(World world, MovementSystem movementSystem, ICreatureFactory creatureFactory, MutationSystem mutationSystem, IHubContext<GameHub> hubContext)
     {
         _world = world;
         _movementSystem = movementSystem;
         _creatureFactory = creatureFactory;
         _mutationSystem = mutationSystem;
+        _hubContext = hubContext;
     }
 
     public async Task Tick(ICommandDispatcher? commandDispatcher)
@@ -47,19 +54,25 @@ public class SimulationEngine
         
         var race = await commandDispatcher!.Send<CreateRaceCommand, Race>(createRaceCommand);
         
-        if (_world.Creatures.Count<10)
+        // if (_world.Creatures.<10)
+        // {
+        //     for (int i = 0; i < 10; i++)
+        //     {
+
+        if (_world.Creatures.Count<2)
         {
             try
             {
                 var creature = _creatureFactory.CreateCreature(_world, race);
                 _world.Creatures.Add(creature);
-                _world.grid[creature.Position.X, creature.Position.Y] = $"{creature.Id}" ;
-                
+                // _world.grid[creature.Position.X, creature.Position.Y] = $"{creature.Id}" ;
+                _world.CreaturePositions.Add($"{creature.Position.X},{creature.Position.Y}", creature.Id.ToString());
+                Console.WriteLine("EL COUNT ES "+_world.Creatures.Count);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al crear criatura: {ex.Message}");
-            }  
+            }    
         }
         
         //Mostrar Criaturas
@@ -67,33 +80,36 @@ public class SimulationEngine
         {
             for (var j = 0; j < _world.Height; j++)
             {
-                if (!string.IsNullOrWhiteSpace(_world.grid[i,j]))
-                {
-                    Console.Write("*");
-                }
-                Console.Write("-");
+                Console.Write(_world.CreaturePositions.ContainsKey($"{i},{j}") ? "*" : "-");
             }
             Console.WriteLine();
         }
         
-        // 2. Mover criaturas y mutar criaturas
+        // 2. Mover criaturas ,mutar criaturas,envejecer
         foreach (var creature in _world.Creatures)
         {
-            _movementSystem.Move(_world, creature);
-            _mutationSystem.Mutate(creature);
+            _movementSystem.Move(_world, creature);     //Mueve las criaturas
+            // _mutationSystem.Mutate(creature);           //Muta las criaturas
+            creature.AgeOneYear();                      //envejece las criaturas
         }
-        
-        // 3. Reproducción
 
-        
-        // 4. Envejecimiento y muerte
+        //Reproducirse
         foreach (var creature in _world.Creatures)
         {
-            creature.AgeOneYear();
+            ReproductionSystem.Reproduce(_world,creature); // se puede inyectar world
         }
 
         _world.Creatures.RemoveAll(c => c.IsAlive==false);
         Console.WriteLine($"🕒 Año {_world.YearTime}...");
         // TODO: Guardar estado o hacer log si quieres
+        
+        var snapshot = new WorldSnapshot(_world);
+        
+        // Notificar a los suscriptores (ej: interfaz)
+        await _hubContext.Clients.All.SendAsync("ReceiveUpdate", snapshot);
     }
 }
+
+public record WorldSnapshot(
+    World World)
+{}

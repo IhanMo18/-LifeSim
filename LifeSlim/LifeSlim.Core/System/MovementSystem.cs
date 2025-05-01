@@ -7,9 +7,13 @@ public class MovementSystem(MovementStrategyFactory strategyFactory)
 {
     public void Move(World world, Creature creature)
     {
-        world.grid[creature.Position.X, creature.Position.Y] = "";
+        if (world.CreaturePositions.ContainsKey($"{creature.Position.X},{creature.Position.Y}"))
+        {
+            world.CreaturePositions.Remove($"{creature.Position.X},{creature.Position.Y}");    
+        }
         var strategy = strategyFactory.GetStrategy(creature);
-        creature.Position=strategy.NextPosition(world,creature);
-        world.grid[creature.Position.X,creature.Position.Y]=creature.Id.ToString();   
+        var nextPosition=strategy.NextPosition(world,creature);
+        creature.Position = nextPosition;
+        world.CreaturePositions.Add($"{nextPosition.X},{nextPosition.Y}",creature.Id.ToString());
     }
 }

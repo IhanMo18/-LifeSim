@@ -15,11 +15,21 @@ public class NormalMutation : IMutationStrategy
         {
             switch (mutation.Stat)
             {
-                case StatType.Strength: creature.Dna.Stats.Strength += mutation.ChangeAmount; break;
-                case StatType.Speed: creature.Dna.Stats.Speed += mutation.ChangeAmount; break;
-                case StatType.Vision: creature.Dna.Stats.Vision += mutation.ChangeAmount; break;
-                case StatType.Defense: creature.Dna.Stats.Defense += mutation.ChangeAmount; break;
-                case StatType.Aggression: creature.Dna.Stats.Aggression += mutation.ChangeAmount; break;
+                case StatType.Strength: creature.Dna.Stats.Strength += mutation.ChangeAmount; 
+                    creature.Dna.Mutations.Add(mutation);
+                    break;
+                case StatType.Speed: creature.Dna.Stats.Speed += mutation.ChangeAmount; 
+                    creature.Dna.Mutations.Add(mutation);
+                    break;
+                case StatType.Vision: creature.Dna.Stats.Vision += mutation.ChangeAmount; 
+                    creature.Dna.Mutations.Add(mutation);
+                    break;
+                case StatType.Defense: creature.Dna.Stats.Defense += mutation.ChangeAmount; 
+                    creature.Dna.Mutations.Add(mutation);
+                    break;
+                case StatType.Aggression: creature.Dna.Stats.Aggression += mutation.ChangeAmount; 
+                    creature.Dna.Mutations.Add(mutation);
+                    break;
             }
             Console.WriteLine($"{mutation.Stat} is mutated");
         }

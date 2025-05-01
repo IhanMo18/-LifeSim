@@ -9,7 +9,7 @@ public class World
         {
             Width = width;
             Height = height;
-            grid = new string[width, height];
+            // grid = new string[width, height];
             ScheduledEvents.Add(new AcidRainEvent(10));
             ScheduledEvents.Add(new AcidRainEvent(20));
         }
@@ -17,12 +17,15 @@ public class World
         public int Width { get; set; }
         public int Height { get; set; }
     
-        public string[,] grid { get; set; }
+        // public string[,] grid { get; set; }
+        
+        public Dictionary<string,string> CreaturePositions { get; set; } = new Dictionary<string, string>();
     
-        public List<Creature> Creatures { get; set; } = new();
+        public List<Creature> Creatures { get; set; } = new List<Creature>();
         public int YearTime { get; set; }
         public List<WorldEvent> ScheduledEvents { get; set; } = new();
-        Dictionary<(int, int), List<object>> worldMap = new Dictionary<(int, int), List<object>>();
+        
+        // Dictionary<(int, int), List<object>> worldMap = new Dictionary<(int, int), List<object>>();
     
     
         public Position GenerateFreePosition()
@@ -42,7 +45,8 @@ public class World
        
         private bool IsOcupied(int x, int y)
         {
-            return grid[x, y] != null;
+            return CreaturePositions.ContainsKey($"{x},{y}");
+            //return grid[x, y] != null;
         }
         
         
@@ -55,19 +59,19 @@ public class World
                 return false;
 
             // Actualiza grid y worldMap si aplica
-            grid[currentPos.X, currentPos.Y] = "";
-            grid[newX, newY] = creature.Id.ToString(); //quiero guardar los id de las criaturas en las posiciones 
+            CreaturePositions[$"{currentPos.X},{currentPos.Y}"] = "";
+            CreaturePositions[$"{currentPos.X},{currentPos.Y}"] = creature.Id.ToString(); //quiero guardar los id de las criaturas en las posiciones 
 
-            var oldKey = (currentPos.X, currentPos.Y);
-            var newKey = (newX, newY);
+            var oldKey = $"{currentPos.X},{currentPos.Y}";
+            // var newKey = (newX, newY);
 
-            if (worldMap.ContainsKey(oldKey))
-                worldMap[oldKey].Remove(creature);
+            if (CreaturePositions.ContainsKey(oldKey))
+                CreaturePositions.Remove(oldKey);
 
-            if (!worldMap.ContainsKey(newKey))
-                worldMap[newKey] = new List<object>();
+            // if (!worldMap.ContainsKey(newKey))
+            //     worldMap[newKey] = new List<object>();
 
-            worldMap[newKey].Add(creature);
+            // worldMap[newKey].Add(creature);
 
             // Actualiza posición de la criatura
             creature.Position = new Position(x:newX, y:newY);
