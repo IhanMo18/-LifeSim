@@ -12,11 +12,11 @@ public class AdvanceYearsCommandHandler
         _engine=engine;
     }
 
-    public void Handle(AdvanceYearsCommand command)
-    {
-        for (int i = 0; i < command.YearsToAdvance; i++)
-        {
-           _engine.Tick(); // Aquí correrías un año de simulación
-        }
-    }
+    // public void Handle(AdvanceYearsCommand command)
+    // {
+    //     for (int i = 0; i < command.YearsToAdvance; i++)
+    //     {
+    //        _engine.Tick(); // Aquí correrías un año de simulación
+    //     }
+    // }
 }

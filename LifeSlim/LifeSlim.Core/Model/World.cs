@@ -9,7 +9,7 @@ public class World
         {
             Width = width;
             Height = height;
-            grid = new string[width, height];
+            // grid = new string[width, height];
             ScheduledEvents.Add(new AcidRainEvent(10));
             ScheduledEvents.Add(new AcidRainEvent(20));
         }
@@ -17,12 +17,15 @@ public class World
         public int Width { get; set; }
         public int Height { get; set; }
     
-        public string[,] grid { get; set; }
+        // public string[,] grid { get; set; }
+        
+        public Dictionary<string,string> CreaturePositions { get; set; } = new Dictionary<string, string>();
     
-        public List<Creature> Creatures { get; set; } = new();
+        public List<Creature> Creatures { get; set; } = new List<Creature>();
         public int YearTime { get; set; }
         public List<WorldEvent> ScheduledEvents { get; set; } = new();
-        private List<object> worldMap = new List<object>();
+        
+        // Dictionary<(int, int), List<object>> worldMap = new Dictionary<(int, int), List<object>>();
     
     
         public Position GenerateFreePosition()
@@ -40,46 +43,39 @@ public class World
             return new Position(x,y);
         }
        
-        public  bool IsOcupied(int x, int y)
+        private bool IsOcupied(int x, int y)
         {
-            return grid[x, y] != null;
+            return CreaturePositions.ContainsKey($"{x},{y}");
+            //return grid[x, y] != null;
         }
         
-        public bool IsPositionValid(int x, int y)
+        
+        public bool MoveCreature(Creature creature, int newX, int newY)
         {
-            return x >= 0 && x < Width && y >= 0 && y < Height;
-        }
-        //Buscar si hay una criatura en una posición específica
-        public void IsCreatureAt(Position pos, out Creature creature)
-        {
-            // creature = worldMap.FirstOrDefault(c => c. == pos.X && c.Position.Y == pos.Y);
-            // return creature != null;
-            creature = null;
-        }
+            var currentPos = creature.Position;
 
-
-        public bool SetInWorld(Creature creature)
-        {
-            // Verificar si ya existe un objeto en la misma posición
-            bool positionOccupied = worldMap.Any(obj =>
-            {
-                if (obj is Creature otherCreature)
-                {
-                    return otherCreature.Position.X == creature.Position.X && otherCreature.Position.Y == creature.Position.Y;
-                }
-                // Si necesitas verificar otros tipos de objetos, puedes agregarlos aquí.
+            // Validaciones de mundo
+            if (newX < 0 || newX >= Width || newY < 0 || newY >= Height)
                 return false;
-            });
 
-            if (positionOccupied)
-            {
-                Console.WriteLine("Error: Ya existe un objeto en esta posición.");
-                return false;  // No agregar la criatura si la posición ya está ocupada.
-            }
+            // Actualiza grid y worldMap si aplica
+            CreaturePositions[$"{currentPos.X},{currentPos.Y}"] = "";
+            CreaturePositions[$"{currentPos.X},{currentPos.Y}"] = creature.Id.ToString(); //quiero guardar los id de las criaturas en las posiciones 
 
-            // Si no hay objetos en la misma posición, agregar la criatura al mundo
-            worldMap.Add(creature);
+            var oldKey = $"{currentPos.X},{currentPos.Y}";
+            // var newKey = (newX, newY);
+
+            if (CreaturePositions.ContainsKey(oldKey))
+                CreaturePositions.Remove(oldKey);
+
+            // if (!worldMap.ContainsKey(newKey))
+            //     worldMap[newKey] = new List<object>();
+
+            // worldMap[newKey].Add(creature);
+
+            // Actualiza posición de la criatura
+            creature.Position = new Position(x:newX, y:newY);
+
             return true;
         }
     }
-    

@@ -7,11 +7,9 @@ namespace LifeSlim.Core.System;
 
 public class MutationSystem
 {
-    
     private readonly MutationStrategyFactory _strategyFactory;
     private readonly IMutationFactory _mutationFactory;
-    
-
+ 
     public MutationSystem(MutationStrategyFactory strategyFactory, IMutationFactory mutationFactory)
     {
         _strategyFactory = strategyFactory;

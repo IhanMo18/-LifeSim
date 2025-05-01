@@ -10,8 +10,4 @@
       <ProjectReference Include="..\LifeSlim.Core\LifeSlim.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="UseCases\AdvanceYears\" />
-    </ItemGroup>
-
 </Project>
