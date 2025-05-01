@@ -7,42 +7,38 @@ namespace LifeSlim.Core.Movement;
 
 public class HuntStrategy : IMovementStrategy
 {
+    private readonly IMovementStrategy _randomStrategy;
+
+    public HuntStrategy()
+    {
+        _randomStrategy = new RandomMovementStrategy(); // La estrategia aleatoria si no hay presas
+    }
+
     public Position NextPosition(World world, Creature creature)
     {
-        var targetPos = BfsNavigator.FindNearestCreature(world, creature,creature.Dna.Stats.Vision);
+        var allPrey = VisionService.FindCreaturesByVision(world, creature, creature.Dna.Stats.Vision);
 
-        if (targetPos == null) return new RandomMovementStrategy().NextPosition(world, creature);
-        
-        
-        if (world.IsCreatureAt(targetPos, out var targetCreature))
+        if (allPrey.Count == 0)
         {
-            // Aquí intentamos predecir hacia dónde irá la criatura
-            var predictedPos = PredictNextPosition(targetCreature);
-            Console.WriteLine($"Predicted position: {predictedPos}");
-
-            // Ahora el cazador se mueve hacia la posición predicha
-            var dx = Math.Clamp(predictedPos.X - creature.Position.X, -1, 1);
-            var dy = Math.Clamp(predictedPos.Y - creature.Position.Y, -1, 1);
-            Console.WriteLine($"Me mueevo hacia la posicion predicha");
-
-            return new Position(creature.Position.X + dx, creature.Position.Y + dy);
-        }
-        else
-        {
-            // Si por alguna razón no encontramos criatura (por ejemplo, ya se movió), movemos hacia targetPos normal
-            var dx = Math.Clamp(targetPos.X - creature.Position.X, -1, 1);
-            var dy = Math.Clamp(targetPos.Y - creature.Position.Y, -1, 1);
-            Console.WriteLine($"movemos hacia targetPos normal");
-
-            return new Position(creature.Position.X + dx, creature.Position.Y + dy);
+            Console.WriteLine("No hay presas cerca, cambiando a estrategia aleatoria");
+            return _randomStrategy.NextPosition(world, creature); // Si no hay presas, movimiento aleatorio
         }
 
-        // Si no encuentra objetivos, usa movimiento aleatorio
+        var closestPrey = allPrey
+            .OrderBy(p =>
+                Math.Abs(p.Position.X - creature.Position.X) +
+                Math.Abs(p.Position.Y - creature.Position.Y))
+            .First();
+
+        var predictedPos = PredictNextPosition(closestPrey);
+        var dx = Math.Clamp(predictedPos.X - creature.Position.X, -1, 1);
+        var dy = Math.Clamp(predictedPos.Y - creature.Position.Y, -1, 1);
+
+        return new Position(creature.Position.X + dx, creature.Position.Y + dy);
     }
 
     private Position PredictNextPosition(Creature target)
     {
-        // Esta predicción es súper básica: asume que el objetivo sigue moviéndose en la misma dirección
         return new Position(
             target.Position.X + target.CurrentDirection.X,
             target.Position.Y + target.CurrentDirection.Y

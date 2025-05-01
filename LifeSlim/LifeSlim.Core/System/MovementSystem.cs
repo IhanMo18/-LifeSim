@@ -12,9 +12,10 @@ public class MovementSystem(MovementStrategyFactory strategyFactory)
         world.grid[creature.Position.X ,creature.Position.Y] = "";
         var strategy = strategyFactory.GetStrategy(creature);
         var nextPosition =  strategy.NextPosition(world, creature);
+       
         Console.WriteLine("Tengo proxima posicion "+nextPosition.X+" "+nextPosition.Y);
-        // Validar si la nueva posición es válida antes de mover
-        if (world.IsPositionValid(nextPosition.X, nextPosition.Y))
+        
+        if (world.IsPositionValid(nextPosition.X, nextPosition.Y))  // Validar si la nueva posición es válida antes de mover
         {
             creature.MoveTo(nextPosition);
             Console.WriteLine("Me movi de posicion con strategy "+ strategy );

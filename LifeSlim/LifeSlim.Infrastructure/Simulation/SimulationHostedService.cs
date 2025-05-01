@@ -25,7 +25,7 @@ public class SimulationHostedService : BackgroundService
         {
             await _engine.Tick();
             Console.WriteLine("Tick ejecutado");
-            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken); // Simular cada 10s
+            await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken); // Simular cada 10s
         }
     }
 }

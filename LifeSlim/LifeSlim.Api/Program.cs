@@ -18,13 +18,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<World>(new World(10, 10)); // Mundo único y compartido
-
-builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
-    .FromAssembliesOf(typeof(CreateRaceCommandHandler))
-    .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)))
-    .AsImplementedInterfaces()
-    .WithScopedLifetime());
-
+// builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
+//     .FromAssembliesOf(typeof(CreateRaceCommandHandler))
+//     .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)))
+//     .AsImplementedInterfaces()
+//     .WithScopedLifetime());
 builder.Services.AddScoped<ICommandDispatcher,CommandDispatcher>();
 builder.Services.AddSingleton<ICreatureFactory, CreatureFactory>();
 builder.Services.AddSingleton<IMutationFactory, MutationFactory>();

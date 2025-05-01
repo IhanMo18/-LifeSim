@@ -10,13 +10,14 @@ public class AcidRainEvent(int triggerYear) : WorldEvent("AcidRain", triggerYear
 
         foreach (var creature in world.Creatures)
         {
-            int damage = (int)(creature.Health * 0.2);
+            var damage = (int)(creature.Health * 0.2);
             creature.Health -= damage;
 
             if (creature.Health < 0)
+            {
                 creature.Health = 0;
-            creature.IsAlive = false;
-
+                creature.IsAlive = false;  
+            }
             Console.WriteLine($"🐛 Criatura dañada. Salud restante: {creature.Health}");
         }
     }

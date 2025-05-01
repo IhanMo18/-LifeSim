@@ -22,7 +22,7 @@ public class World
         public List<Creature> Creatures { get; set; } = new();
         public int YearTime { get; set; }
         public List<WorldEvent> ScheduledEvents { get; set; } = new();
-        Dictionary<(int, int), List<object>> worldMap = new Dictionary<(int, int), List<object>>();
+        private List<object> worldMap = new List<object>();
     
     
         public Position GenerateFreePosition()
@@ -49,18 +49,37 @@ public class World
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
-        
-        public bool IsCreatureAt(Position pos, out Creature creature)
+        //Buscar si hay una criatura en una posición específica
+        public void IsCreatureAt(Position pos, out Creature creature)
         {
+            // creature = worldMap.FirstOrDefault(c => c. == pos.X && c.Position.Y == pos.Y);
+            // return creature != null;
             creature = null;
-            if (!IsPositionValid(pos.X, pos.Y)) return false;
-    
-            if (worldMap.TryGetValue((pos.X, pos.Y), out var objects))
-            {
-                creature = objects.OfType<Creature>().FirstOrDefault();
-                return creature != null;
-            }
-            return false;
         }
 
+
+        public bool SetInWorld(Creature creature)
+        {
+            // Verificar si ya existe un objeto en la misma posición
+            bool positionOccupied = worldMap.Any(obj =>
+            {
+                if (obj is Creature otherCreature)
+                {
+                    return otherCreature.Position.X == creature.Position.X && otherCreature.Position.Y == creature.Position.Y;
+                }
+                // Si necesitas verificar otros tipos de objetos, puedes agregarlos aquí.
+                return false;
+            });
+
+            if (positionOccupied)
+            {
+                Console.WriteLine("Error: Ya existe un objeto en esta posición.");
+                return false;  // No agregar la criatura si la posición ya está ocupada.
+            }
+
+            // Si no hay objetos en la misma posición, agregar la criatura al mundo
+            worldMap.Add(creature);
+            return true;
+        }
     }
+    
