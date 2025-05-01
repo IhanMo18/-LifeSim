@@ -9,19 +9,24 @@ public class HuntStrategy : IMovementStrategy
 {
     private readonly IMovementStrategy _randomStrategy;
 
+    // Evento o callback que se puede manejar desde afuera
+    public static event Action<Creature, Creature, Position>? OnPotentialCollision;
+
     public HuntStrategy()
     {
-        _randomStrategy = new RandomMovementStrategy(); // La estrategia aleatoria si no hay presas
+        _randomStrategy = new RandomMovementStrategy();
     }
 
     public Position NextPosition(World world, Creature creature)
     {
-        var allPrey = VisionService.FindCreaturesByVision(world, creature, creature.Dna.Stats.Vision);
+        var allPrey = VisionService.FindCreaturesByVision(world, creature, creature.Dna.Stats.Vision)
+            .Where(c => c != creature) // evitar auto detección
+            .ToList();
 
         if (allPrey.Count == 0)
         {
             Console.WriteLine("No hay presas cerca, cambiando a estrategia aleatoria");
-            return _randomStrategy.NextPosition(world, creature); // Si no hay presas, movimiento aleatorio
+            return _randomStrategy.NextPosition(world, creature);
         }
 
         var closestPrey = allPrey
@@ -30,11 +35,22 @@ public class HuntStrategy : IMovementStrategy
                 Math.Abs(p.Position.Y - creature.Position.Y))
             .First();
 
-        var predictedPos = PredictNextPosition(closestPrey);
-        var dx = Math.Clamp(predictedPos.X - creature.Position.X, -1, 1);
-        var dy = Math.Clamp(predictedPos.Y - creature.Position.Y, -1, 1);
+        var predictedPreyPos = PredictNextPosition(closestPrey);
 
-        return new Position(creature.Position.X + dx, creature.Position.Y + dy);
+        // Movimiento de la criatura hacia la presa
+        var dx = Math.Clamp(predictedPreyPos.X - creature.Position.X, -1, 1);
+        var dy = Math.Clamp(predictedPreyPos.Y - creature.Position.Y, -1, 1);
+        var nextPosition = new Position(creature.Position.X + dx, creature.Position.Y + dy);
+
+        // Detectar posible colisión
+        var preyNextPos = PredictNextPosition(closestPrey);
+        if (preyNextPos.Equals(nextPosition))
+        {
+            // Disparar evento de colisión
+            OnPotentialCollision?.Invoke(creature, closestPrey, nextPosition);
+        }
+
+        return nextPosition;
     }
 
     private Position PredictNextPosition(Creature target)

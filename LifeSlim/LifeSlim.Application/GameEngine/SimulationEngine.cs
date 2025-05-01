@@ -4,7 +4,6 @@ using LifeSlim.Application.UseCases.Race.Commands;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.System;
-using LifeSlim.Core.ValueObjects;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 

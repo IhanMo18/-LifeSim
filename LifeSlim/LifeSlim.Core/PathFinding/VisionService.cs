@@ -9,38 +9,41 @@ public  static class VisionService
 
     public static List<Creature> FindCreaturesByVision(World world, Creature creature, int vision)
     {
-        var criaturasVisibles = new List<Creature>();
+        var creaturesFindList = new List<Creature>();
 
-        // Recorremos el área de visión
-        for (var dx = -vision; dx <= vision; dx++)
+        for (int dx = -vision; dx <= vision; dx++)
         {
-            for (var dy = -vision; dy <= vision; dy++)
+            for (int dy = -vision; dy <= vision; dy++)
             {
-                // Ignoramos la posición central (donde está la criatura)
+                // Ignora la posición central (donde está la criatura)
                 if (dx == 0 && dy == 0)
                     continue;
 
-                var x = creature.Position.X + dx;
-                var y = creature.Position.Y + dy;
+                int x = creature.Position.X + dx;
+                int y = creature.Position.Y + dy;
 
                 // Verifica si las coordenadas están dentro de los límites del mundo
                 if (x < 0 || x >= world.Width || y < 0 || y >= world.Height)
                     continue;
 
-                var creaturePosition = new Position(x, y);
-                Creature creatureFind = null;
-            
-                // Verifica si hay una criatura en esa posición
-                world.IsCreatureAt(creaturePosition, out creatureFind);
-
-                if (creatureFind != null)
+                // Obtener criatura u objeto en la posición actual
+                var foundCreature = world.GetCreatureAtPosition(x, y);
+                if (foundCreature != null)
                 {
-                    criaturasVisibles.Add(creatureFind);
+                    creaturesFindList.Add(foundCreature);
                 }
+
+                // Si también deseas incluir objetos, descomenta y adapta esta parte:
+                // var foundObject = world.GetObjectAtPosition(x, y);
+                // if (foundObject != null)
+                // {
+                //     objetosVisibles.Add(foundObject);
+                // }
             }
         }
 
-        return criaturasVisibles;
+        return creaturesFindList;
     }
+
 
 }

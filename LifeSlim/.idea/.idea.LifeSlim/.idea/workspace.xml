@@ -17,26 +17,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23aa9f3a-a6f8-4993-a610-ee7e1e0fb3c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LifeSlim.Core/PathFinding/VisionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LifeSlim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LifeSlim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/Debug/net9.0/LifeSlim.Api.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/LifeSlim.Api.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/LifeSlim.Api.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Api/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Api/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Application/GameEngine/SimulationEngine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/GameEngine/SimulationEngine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/LifeSlim.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/LifeSlim.Application.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Events/AcidRainEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Events/AcidRainEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Factories/MovementStrategyFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Factories/MovementStrategyFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Model/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Model/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/Debug/net9.0/LifeSlim.Application.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/LifeSlim.Application.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/LifeSlim.Application.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/LifeSlim.Application.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/LifeSlim.Application.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Application/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Application/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Core/Movement/HuntStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/Movement/HuntStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/PathFinding/BfsNavigator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/System/MovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/System/MovementSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/PathFinding/VisionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/PathFinding/VisionService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/Debug/net9.0/LifeSlim.Core.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Core/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Core/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/Simulation/SimulationHostedService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/Simulation/SimulationHostedService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/Debug/net9.0/LifeSlim.Infrastructure.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/LifeSlim.Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/LifeSlim.Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/LifeSlim.Infrastructure/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +84,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -254,6 +273,7 @@
       <workItem from="1746006067542" duration="2483000" />
       <workItem from="1746023835074" duration="4983000" />
       <workItem from="1746128049235" duration="1265000" />
+      <workItem from="1746142276476" duration="1075000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <option name="closed" value="true" />
@@ -367,7 +387,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746009698518</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat(TrashData)">
+      <option name="closed" value="true" />
+      <created>1746142423601</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746142423601</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,12 +411,12 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/David" />
+                  <option value="origin/Ihan" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/Ihan" />
+                  <option value="origin/David" />
                 </option>
               </RecentGroup>
               <RecentGroup>
@@ -421,7 +449,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/David" />
+                        <option value="origin/Ihan" />
                       </list>
                     </value>
                   </entry>
@@ -448,7 +476,8 @@
     <MESSAGE value="feat(Application),feat(core)--&gt;update Factory Pattern,still whit problems" />
     <MESSAGE value="feat(HuntStrategy)--&gt;not finish,yet whit problems" />
     <MESSAGE value="feat(core)--&gt;Add Builder for management news instances of race" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core)--&gt;Add Builder for management news instances of race" />
+    <MESSAGE value="feat(TrashData)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(TrashData)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
