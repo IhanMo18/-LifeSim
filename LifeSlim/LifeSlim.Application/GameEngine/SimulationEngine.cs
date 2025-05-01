@@ -4,6 +4,7 @@ using LifeSlim.Application.UseCases.Race.Commands;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.System;
+using LifeSlim.Core.ValueObjects;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 
@@ -54,12 +55,14 @@ public class SimulationEngine
         
         var race = await commandDispatcher!.Send<CreateRaceCommand, Race>(createRaceCommand);
         
+        
         // if (_world.Creatures.<10)
         // {
         //     for (int i = 0; i < 10; i++)
         //     {
 
-        if (_world.Creatures.Count<2)
+        
+        while (_world.Creatures.Count<5)
         {
             try
             {
@@ -74,6 +77,34 @@ public class SimulationEngine
                 Console.WriteLine($"Error al crear criatura: {ex.Message}");
             }    
         }
+
+        foreach (var crea in _world.Creatures)
+        {
+            Console.WriteLine("El id es "+crea.Id);
+        }
+
+
+        foreach (var crea in _world.CreaturePositions)
+        {
+            Console.WriteLine("Posiciones viejas "+crea.Key);
+        }
+        
+        // 2. Mover criaturas ,mutar criaturas,envejecer
+        foreach (var creature in _world.Creatures)
+        {
+            Console.WriteLine("El Position es "+creature.Position.X+","+creature.Position.Y);
+            _movementSystem.Move(_world, creature);     //Mueve las criaturas
+            Console.WriteLine("La nueva position es "+creature.Position.X+","+creature.Position.Y);
+            
+            // _mutationSystem.Mutate(creature);           //Muta las criaturas
+            creature.AgeOneYear();                      //envejece las criaturas
+        }
+
+        foreach (var crea in _world.CreaturePositions)
+        {
+            Console.WriteLine("Posiciones actuales "+crea.Key);
+        }
+        
         
         //Mostrar Criaturas
         for (var i = 0; i < _world.Width; i++)
@@ -85,28 +116,20 @@ public class SimulationEngine
             Console.WriteLine();
         }
         
-        // 2. Mover criaturas ,mutar criaturas,envejecer
-        foreach (var creature in _world.Creatures)
-        {
-            _movementSystem.Move(_world, creature);     //Mueve las criaturas
-            // _mutationSystem.Mutate(creature);           //Muta las criaturas
-            creature.AgeOneYear();                      //envejece las criaturas
-        }
-
         //Reproducirse
-        foreach (var creature in _world.Creatures)
-        {
-            ReproductionSystem.Reproduce(_world,creature); // se puede inyectar world
-        }
+        // foreach (var creature in _world.Creatures)
+        // {
+        //     ReproductionSystem.Reproduce(_world,creature); // se puede inyectar world
+        // }
 
         _world.Creatures.RemoveAll(c => c.IsAlive==false);
         Console.WriteLine($"🕒 Año {_world.YearTime}...");
         // TODO: Guardar estado o hacer log si quieres
         
-        var snapshot = new WorldSnapshot(_world);
+        // var snapshot = new WorldSnapshot(_world);
         
         // Notificar a los suscriptores (ej: interfaz)
-        await _hubContext.Clients.All.SendAsync("ReceiveUpdate", snapshot);
+        await _hubContext.Clients.All.SendAsync("ReceiveUpdate", _world);
     }
 }
 

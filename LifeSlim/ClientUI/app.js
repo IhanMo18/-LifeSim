@@ -33,7 +33,7 @@ function renderGrid(gridData) {
     console.log(gridData);
     
     gridContainer.innerHTML = '';
-    gridContainer.style.gridTemplateColumns = `repeat(${gridData.world.width}, 20px)`;
+    gridContainer.style.gridTemplateColumns = `repeat(${gridData.width}, 20px)`;
 
     // for (const clave in gridData.world.creaturePositions) {
     //     if (creaturePositions.hasOwnProperty(clave)) {
@@ -45,8 +45,8 @@ function renderGrid(gridData) {
     //     }
     // }
 
-    for (let y = 0; y < gridData.world.height; y++) {
-        for (let x = 0; x < gridData.world.width; x++) {
+    for (let y = 0; y < gridData.height; y++) {
+        for (let x = 0; x < gridData.width; x++) {
             const cell = document.createElement("div");
             cell.className = "cell";
             
@@ -55,9 +55,9 @@ function renderGrid(gridData) {
 
             // 2. Verificar si existe y tiene un valor no vacío
             if (
-                gridData.world.creaturePositions.hasOwnProperty(clave) &&
-                typeof gridData.world.creaturePositions[clave] === "string" &&
-                gridData.world.creaturePositions[clave].trim() !== ""
+                gridData.creaturePositions.hasOwnProperty(clave) &&
+                typeof gridData.creaturePositions[clave] === "string" &&
+                gridData.creaturePositions[clave].trim() !== ""
             ) {
                 cell.classList.add("filled");
                 cell.textContent = "*";

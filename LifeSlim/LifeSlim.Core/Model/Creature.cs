@@ -26,7 +26,7 @@ public class Creature
     public void AgeOneYear()
     {
         Age++;
-        if (Age < 25) //edad generica
+        if (Age > 25) //edad generica
         {
             IsAlive = false;
         }
