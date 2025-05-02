@@ -13,7 +13,7 @@ public class Creature
     }
     
     public int Health { get; set; } = 100;
-    public int Hunger { get; set; } = 71;
+    public int Hunger { get; set; } = 0;
     public Position Position { get; set; }
     public Guid Id { get; private set; } = Guid.NewGuid();
     public Dna Dna { get; set; }

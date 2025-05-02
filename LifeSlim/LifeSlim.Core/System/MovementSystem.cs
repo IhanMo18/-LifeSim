@@ -14,16 +14,16 @@ public class MovementSystem(MovementStrategyFactory strategyFactory)
         var nextPosition = strategy.NextPosition(world, creature);
         var newKey = $"{nextPosition.X},{nextPosition.Y}";
 
-        // ⚠️ Previene colisiones: no moverse si la posición ya está ocupada
-        if (!world.CreaturePositions.ContainsKey(newKey))
+        while (world.CreaturePositions.ContainsKey(newKey))
         {
-            creature.Position = nextPosition;
-            world.CreaturePositions[newKey] = creature.Id.ToString(); // Añade sin explotar
+            strategy = strategyFactory.GetStrategy(creature);
+            nextPosition = strategy.NextPosition(world, creature);
+            newKey = $"{nextPosition.X},{nextPosition.Y}";
         }
-        else
-        {
-            //Intentar de nuevo
-        }
+        
+        creature.Position = nextPosition;
+        world.CreaturePositions[newKey] = creature.Id.ToString();
+        
     }
 
 }

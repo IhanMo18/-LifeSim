@@ -77,26 +77,16 @@ public class SimulationEngine
             }    
         }
 
-        foreach (var crea in _world.Creatures)
-        {
-            Console.WriteLine("El id es "+crea.Id);
-        }
-
-
         foreach (var crea in _world.CreaturePositions)
         {
             Console.WriteLine("Posiciones viejas "+crea.Key);
         }
         
-        // 2. Mover criaturas ,mutar criaturas,envejecer
         foreach (var creature in _world.Creatures)
         {
-            Console.WriteLine("El Position es "+creature.Position.X+","+creature.Position.Y);
-            _movementSystem.Move(_world, creature);     //Mueve las criaturas
-            Console.WriteLine("La nueva position es "+creature.Position.X+","+creature.Position.Y);
-            
-            // _mutationSystem.Mutate(creature);           //Muta las criaturas
-            creature.AgeOneYear();                      //envejece las criaturas
+            _movementSystem.Move(_world, creature);     
+            // _mutationSystem.Mutate(creature);           
+            creature.AgeOneYear();                      
         }
 
         foreach (var crea in _world.CreaturePositions)
@@ -104,8 +94,6 @@ public class SimulationEngine
             Console.WriteLine("Posiciones actuales "+crea.Key);
         }
         
-        
-        //Mostrar Criaturas
         for (var i = 0; i < _world.Width; i++)
         {
             for (var j = 0; j < _world.Height; j++)
@@ -125,9 +113,7 @@ public class SimulationEngine
         Console.WriteLine($"🕒 Año {_world.YearTime}...");
         // TODO: Guardar estado o hacer log si quieres
         
-        // var snapshot = new WorldSnapshot(_world);
         
-        // Notificar a los suscriptores (ej: interfaz)
         await _hubContext.Clients.All.SendAsync("ReceiveUpdate", _world);
     }
 }
