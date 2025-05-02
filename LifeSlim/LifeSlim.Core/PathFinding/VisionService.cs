@@ -27,7 +27,7 @@ public  static class VisionService
                     continue;
 
                 // Obtener criatura u objeto en la posición actual
-                var foundCreature = world.GetCreatureAtPosition(x, y);
+                var foundCreature = world.GetObjectPosition(x, y);
                 if (foundCreature != null)
                 {
                     creaturesFindList.Add(foundCreature);
