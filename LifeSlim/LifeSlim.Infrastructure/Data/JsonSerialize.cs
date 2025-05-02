@@ -1,0 +1,23 @@
+using System.Text.Json;
+using LifeSlim.Core.Model;
+using LifeSlim.Core.ValueObjects;
+
+namespace LifeSlim.Infrastructure.Data;
+
+public class JsonSerialize : ISerializer
+{
+    public Task SaveToJson(World world)
+    {
+        var json = JsonSerializer.Serialize(world, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText("words.json", json);
+        return Task.CompletedTask;
+    }
+
+    public Task<Creature> Get(World world,Position position)
+    {
+        var jsonFromFile = File.ReadAllText("words.json");
+        var words = JsonSerializer.Deserialize<List<Creature>>(jsonFromFile);
+        var found = words?.FirstOrDefault(w => w.Position == position);
+        return Task.FromResult<Creature>(found ?? null);
+    }
+}

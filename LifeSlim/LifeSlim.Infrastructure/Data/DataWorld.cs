@@ -1,0 +1,28 @@
+using LifeSlim.Core.Model;
+using LifeSlim.Core.ValueObjects;
+
+namespace LifeSlim.Infrastructure.Data;
+
+public class DataWorld
+{
+    private readonly ISerializer _serializer;
+    public World _world;
+
+
+    public DataWorld(ISerializer serializer,World world)
+    {
+        _serializer = serializer;
+        _world = world;
+    }
+
+
+    public void Save()
+    { 
+        _serializer.SaveToJson(_world);
+    }
+
+    public Task<Creature> GetFromJson(Position position)
+    {
+       return _serializer.Get(_world, position);
+    }
+}

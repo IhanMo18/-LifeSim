@@ -1,3 +1,4 @@
+using System.Text.Json;
 using LifeSlim.Application;
 using LifeSlim.Application.GameEngine;
 using LifeSlim.Application.Hubs;
@@ -10,6 +11,7 @@ using LifeSlim.Core.Movement;
 using LifeSlim.Core.Mutations;
 using LifeSlim.Core.System;
 using LifeSlim.Infrastructure;
+using LifeSlim.Infrastructure.Data;
 using LifeSlim.Infrastructure.Simulation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +40,7 @@ builder.Services.AddSingleton<MutationStrategyFactory>();
 builder.Services.AddSingleton<MutationSystem>();
 builder.Services.AddSingleton<MovementSystem>();
 builder.Services.AddSingleton<SimulationEngine>();
+builder.Services.AddTransient<ISerializer, JsonSerialize>();
 builder.Services.AddHostedService<SimulationHostedService>();
 
 // En Program.cs
