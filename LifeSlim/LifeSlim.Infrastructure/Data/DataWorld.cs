@@ -1,9 +1,10 @@
+using LifeSlim.Application.Interfaces;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Infrastructure.Data;
 
-public class DataWorld
+public class DataWorld : IDataWorld
 {
     private readonly ISerializer _serializer;
     public World _world;
@@ -16,9 +17,9 @@ public class DataWorld
     }
 
 
-    public void Save()
+    public Task Save()
     { 
-        _serializer.SaveToJson(_world);
+       return _serializer.SaveToJson(_world);
     }
 
     public Task<Creature> GetFromJson(Position position)

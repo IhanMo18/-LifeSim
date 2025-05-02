@@ -9,13 +9,13 @@ public class JsonSerialize : ISerializer
     public Task SaveToJson(World world)
     {
         var json = JsonSerializer.Serialize(world, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText("words.json", json);
+        File.WriteAllText("World.json", json);
         return Task.CompletedTask;
     }
 
     public Task<Creature> Get(World world,Position position)
     {
-        var jsonFromFile = File.ReadAllText("words.json");
+        var jsonFromFile = File.ReadAllText("World.json");
         var words = JsonSerializer.Deserialize<List<Creature>>(jsonFromFile);
         var found = words?.FirstOrDefault(w => w.Position == position);
         return Task.FromResult<Creature>(found ?? null);

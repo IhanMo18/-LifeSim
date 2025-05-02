@@ -40,7 +40,8 @@ builder.Services.AddSingleton<MutationStrategyFactory>();
 builder.Services.AddSingleton<MutationSystem>();
 builder.Services.AddSingleton<MovementSystem>();
 builder.Services.AddSingleton<SimulationEngine>();
-builder.Services.AddTransient<ISerializer, JsonSerialize>();
+builder.Services.AddScoped<ISerializer, JsonSerialize>();
+builder.Services.AddScoped<IDataWorld, DataWorld>();
 builder.Services.AddHostedService<SimulationHostedService>();
 
 // En Program.cs
