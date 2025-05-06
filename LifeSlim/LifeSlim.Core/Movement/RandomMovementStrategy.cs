@@ -8,7 +8,7 @@ public class RandomMovementStrategy :IMovementStrategy
 {
    private readonly Random _random = new Random();
 
-   public Position NextPosition(World world, Creature creature)
+   public Task<Position> NextPosition(World world, Creature creature)
    {
       // Generar un número aleatorio entre 0-3 para las 4 direcciones
       int direction = _random.Next(0, 4);
@@ -35,9 +35,10 @@ public class RandomMovementStrategy :IMovementStrategy
       // Validar límites del mundo
       if (newX < 0 || newX >= world.Width || newY < 0 || newY >= world.Height)
       {
-         return creature.Position;
+         return Task.FromResult(creature.Position);
       }
     
-      return new Position(newX, newY);
+      var nextPos = new Position(newX, newY);
+      return Task.FromResult(nextPos);
    }
 }

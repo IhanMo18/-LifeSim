@@ -5,5 +5,5 @@ namespace LifeSlim.Core.Interface;
 
 public interface IMovementStrategy
 {
-    public Position NextPosition(World world,Creature creature);
+    public Task<Position> NextPosition(World world,Creature creature);
 }

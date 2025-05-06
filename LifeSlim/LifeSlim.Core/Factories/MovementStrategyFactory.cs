@@ -1,21 +1,22 @@
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.Movement;
+using Microsoft.Extensions.DependencyInjection;
 
 public class MovementStrategyFactory
 {
     private readonly IMovementStrategy _random;
     private readonly IMovementStrategy _flee;
     private readonly IMovementStrategy _forage;
-    private readonly IMovementStrategy _hunt;
     private readonly IMovementStrategy _attack;
+    private readonly IServiceProvider _serviceProvider;
 
-    public MovementStrategyFactory()
+    public MovementStrategyFactory(IServiceProvider serviceProvider)
     {
-        _random = new RandomMovementStrategy(); // Ya tienes esta estrategia
+        _random = new RandomMovementStrategy();
         _flee = new FleeStrategy();
         _forage = new ForageStrategy();
-        _hunt = new HuntStrategy(); // Aquí no cambiamos nada
+        _serviceProvider = serviceProvider;
     }
 
     public IMovementStrategy GetStrategy(Creature creature)
@@ -39,6 +40,8 @@ public class MovementStrategyFactory
         }
 
         Console.WriteLine("Movimiento de caza");
-        return _hunt; // Si no, comportamiento de cazar por defecto
+        using var scope = _serviceProvider.CreateScope();
+        var visionService = scope.ServiceProvider.GetRequiredService<IVisionService>();
+        return new HuntStrategy(visionService);
     }
 }

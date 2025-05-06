@@ -3,6 +3,7 @@ using LifeSlim.Application;
 using LifeSlim.Application.GameEngine;
 using LifeSlim.Application.Hubs;
 using LifeSlim.Application.Interfaces;
+using LifeSlim.Application.Service;
 using LifeSlim.Application.UseCases.Race.CommandsHandler;
 using LifeSlim.Core.Factories;
 using LifeSlim.Core.Interface;
@@ -39,9 +40,12 @@ builder.Services.AddSingleton<MovementStrategyFactory>();
 builder.Services.AddSingleton<MutationStrategyFactory>();
 builder.Services.AddSingleton<MutationSystem>();
 builder.Services.AddSingleton<MovementSystem>();
+builder.Services.AddSingleton<EventSystem>();
+builder.Services.AddSingleton<ObjectsSystem>();
 builder.Services.AddSingleton<SimulationEngine>();
 builder.Services.AddScoped<ISerializer, JsonSerialize>();
 builder.Services.AddScoped<IDataWorld, DataWorld>();
+builder.Services.AddScoped<IVisionService, VisionService>();
 builder.Services.AddHostedService<SimulationHostedService>();
 
 // En Program.cs
