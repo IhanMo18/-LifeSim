@@ -21,12 +21,19 @@ public class World
         
         public Dictionary<string,string> CreaturePositions { get; set; } = new Dictionary<string, string>();
     
-        public List<Creature> Creatures { get; set; } = new List<Creature>();
+        public List<MapObject> MapObjects { get; set; } = new List<MapObject>();
         public int YearTime { get; set; }
         public List<WorldEvent> ScheduledEvents { get; set; } = new();
         
         // Dictionary<(int, int), List<object>> worldMap = new Dictionary<(int, int), List<object>>();
     
+        public Creature? GetCreatureAt(int x, int y)
+        {
+            return MapObjects
+                .OfType<Creature>() // 👈 Filtra solo Creatures
+                .FirstOrDefault(c => c.Position.X == x && c.Position.Y == y && c.IsAlive);
+        }
+
     
         public Position GenerateFreePosition()
         {
