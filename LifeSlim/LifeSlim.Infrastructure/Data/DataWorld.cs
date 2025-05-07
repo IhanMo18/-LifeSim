@@ -17,13 +17,18 @@ public class DataWorld : IDataWorld
     }
 
 
+    public Task<World?> GetWorldFromJson()
+    {
+        return _serializer.GetWorld();
+    }
+
     public Task Save()
     { 
        return _serializer.SaveToJson(_world);
     }
 
-    public Task<Creature> GetFromJson(Position position)
+    public Task<Creature> GetCreatureFromJson(Position position)
     {
-       return _serializer.Get(_world, position);
+       return _serializer.GetCreature(_world, position);
     }
 }

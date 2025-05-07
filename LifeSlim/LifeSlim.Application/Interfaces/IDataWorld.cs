@@ -5,6 +5,8 @@ namespace LifeSlim.Application.Interfaces;
 
 public interface IDataWorld
 {
-    public Task<Creature> GetFromJson(Position position);
+    public Task<Creature> GetCreatureFromJson(Position position);
+    
+    public Task<World?> GetWorldFromJson();
     public Task Save();
 }

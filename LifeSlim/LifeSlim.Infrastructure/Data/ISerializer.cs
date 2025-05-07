@@ -6,5 +6,7 @@ namespace LifeSlim.Infrastructure.Data;
 public interface ISerializer
 {
     public Task SaveToJson(World word);
-    public Task<Creature> Get(World world,Position position);
+    public Task<Creature> GetCreature(World world,Position position);
+    
+    public Task<World?> GetWorld();
 }

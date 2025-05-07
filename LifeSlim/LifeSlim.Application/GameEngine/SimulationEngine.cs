@@ -41,7 +41,7 @@ public class SimulationEngine
     {
         var scope = serviceProvider.CreateScope();
         var dataWorld = scope.ServiceProvider.GetRequiredService<IDataWorld>();
-        _eventSystem.EventApply();
+        // _eventSystem.EventApply();
         _objectsSystem.AddCreatures(2);
         _objectsSystem.RemoveCreatures();
         _movementSystem.MoveCreaturesInWorld(_world);

@@ -21,12 +21,7 @@ public class MovementStrategyFactory
 
     public IMovementStrategy GetStrategy(Creature creature)
     {
-        if (!creature.IsAlive)
-        {
-            Console.WriteLine("Movimiento random");
-            return _random;
-        }
-
+        
         if (creature.Health < 30)
         {
             Console.WriteLine("Movimiento de huir");
@@ -39,9 +34,10 @@ public class MovementStrategyFactory
             return _forage;
         }
 
-        Console.WriteLine("Movimiento de caza");
+      
         using var scope = _serviceProvider.CreateScope();
         var visionService = scope.ServiceProvider.GetRequiredService<IVisionService>();
+        Console.WriteLine("Movimiento de caza");
         return new HuntStrategy(visionService);
     }
 }

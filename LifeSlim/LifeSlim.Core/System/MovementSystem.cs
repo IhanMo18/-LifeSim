@@ -18,7 +18,7 @@ public class MovementSystem(MovementStrategyFactory strategyFactory)
             newKey = $"{nextPosition.X},{nextPosition.Y}";
         }
 
-        creature.Position = nextPosition;
+        creature.MoveTo(nextPosition);
         world.CreaturePositions[newKey] = creature.Id.ToString();
     }
 
