@@ -8,20 +8,13 @@ public class ReproductionService
     public static Creature Reproduce(World world, Creature creature,Creature partner)
     {
         var position = world.GenerateFreePosition();
+        var childDna = Dna.Combine(creature.Dna,partner.Dna);
+        var childRaceId = SelectRandomRaceId(creature.RaceId,partner.RaceId);
         
-        if (creature.CanReproduce() && partner.CanReproduce())
-        {
-            var childDna = Dna.Combine(creature.Dna,partner.Dna);
-            var childRaceId = SelectRandomRaceId(creature.RaceId,partner.RaceId);
-            
-            
-            return new Creature(
+        return new Creature(
                 childRaceId, 
                 childDna,
                 position);
-        }
-        Console.WriteLine("No pueden reproducirse");
-        throw new Exception("No pueden reproducirse");
     }
     
     private static Guid SelectRandomRaceId(Guid raceIdA, Guid raceIdB)
