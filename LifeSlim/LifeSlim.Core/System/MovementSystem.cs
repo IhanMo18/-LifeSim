@@ -25,7 +25,7 @@ public class MovementSystem(MovementStrategyFactory strategyFactory)
 
     public async void MoveCreaturesInWorld(World world)
     {
-        foreach (var creature in world.Creatures)
+        foreach (var creature in world.MapObjects.OfType<Creature>())
         {
             await Move(world, creature);
             creature.AgeOneYear();                      
