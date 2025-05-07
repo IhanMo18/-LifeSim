@@ -36,6 +36,7 @@ builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
 builder.Services.AddScoped<ICommandDispatcher,CommandDispatcher>();
 builder.Services.AddSingleton<ICreatureFactory, CreatureFactory>();
 builder.Services.AddSingleton<IMutationFactory, MutationFactory>();
+builder.Services.AddSingleton<IFoodFactorie, FoodFactorie>();
 builder.Services.AddSingleton<MovementStrategyFactory>();
 builder.Services.AddSingleton<MutationStrategyFactory>();
 builder.Services.AddSingleton<MutationSystem>();
