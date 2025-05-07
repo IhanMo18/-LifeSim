@@ -3,21 +3,18 @@ using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Model;
 
-public class Creature 
+public class Creature : MapObject
 {
-    public Creature(Guid raceId, Dna dna,Position position)
+    public Creature(Guid raceId, Dna dna,Position position) : base(position)
     {
         RaceId = raceId;
         Dna = dna;
-        Position = position;
     }
     
     public int Health { get; set; } = 100;
     public int Hunger { get; set; } = 0;
-    public Position Position { get; set; }
-    public Guid Id { get; private set; } = Guid.NewGuid();
     public Dna Dna { get; set; }
-    public int Age { get; set; } = 0;
+    private int Age { get; set; } = 0;
     public bool IsAlive { get; set; } = true;
     
     public bool IsPair { get; set; } = false;
@@ -46,6 +43,19 @@ public class Creature
         IsAlive = false;
     }
     
+    public bool ShouldFleeFrom(Creature pursuer) =>
+        this.Health < 50 || 
+        pursuer.Dna.Stats.Strength > this.Dna.Stats.Strength ||
+        this.Dna.Stats.Aggression < 8;
+
+    public bool CanEngage(Creature target) =>
+        this.Dna.Stats.Aggression >= 8 &&
+        this.Health > 30 &&
+        this.Dna.Stats.Strength >= target.Dna.Stats.Strength;
+
+    public bool ShouldSubmitTo(Creature pursuer) =>
+        this.Health < 20 &&
+        pursuer.Dna.Stats.Strength > this.Dna.Stats.Strength + 4;
     
     public void MoveTo(Position newPosition)
     {

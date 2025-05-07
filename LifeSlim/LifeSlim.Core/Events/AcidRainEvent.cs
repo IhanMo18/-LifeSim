@@ -8,7 +8,7 @@ public class AcidRainEvent(int triggerYear) : WorldEvent("AcidRain", triggerYear
     {
         Console.WriteLine("☣️ Lluvia Ácida! Todas las criaturas sufren daño...");
 
-        foreach (var creature in world.Creatures)
+        foreach (var creature in world.MapObjects.OfType<Creature>())
         {
             var damage = (int)(creature.Health * 0.2);
             creature.Health -= damage;
