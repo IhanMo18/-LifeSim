@@ -1,0 +1,21 @@
+using LifeSlim.Core.Interface;
+using LifeSlim.Core.Model;
+using LifeSlim.Core.ValueObjects;
+
+namespace LifeSlim.Core.Factories;
+
+public class FoodFactorie : IFoodFactorie
+{
+    private readonly World _world;
+
+    public FoodFactorie(World world)
+    {
+        _world = world;
+    }
+
+    public Food CreateFood()
+    {
+        var position = _world.GenerateFreePosition();
+        return new Food(position);
+    }
+}
