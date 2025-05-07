@@ -6,7 +6,9 @@ namespace LifeSlim.Core.System;
 
 public static class ReproductionSystem
 {
-    public static void Reproduce(World world,Creature creature)
+   
+    
+    public static void Reproduce(World world,Creature creature,List<Creature> newCreatures)
     {
         var posicionesAdyacentes = new List<Position>
         {
@@ -21,9 +23,10 @@ public static class ReproductionSystem
         {
             if (pos.X >= 0 && pos.X < world.Width && pos.Y >= 0 && pos.Y < world.Height)
             {
-                if(world.CreaturePositions.TryGetValue($"{creature.Position.X},{creature.Position.Y}",out var idEnCelda))
+                if(world.CreaturePositions.TryGetValue($"{pos.X},{pos.Y}",out var idEnCelda))
                 {
-                    var criaturaAdyacente = world.Creatures.FirstOrDefault(c => c.Id.ToString() == idEnCelda);
+                    var criaturaAdyacente = world.MapObjects.OfType<Creature>().FirstOrDefault(c => c.Id.ToString() == idEnCelda);
+                    
                     if (criaturaAdyacente != null && criaturaAdyacente != creature)
                     {
                         criaturasCercanas.Add(criaturaAdyacente);
@@ -40,7 +43,7 @@ public static class ReproductionSystem
                 try
                 {
                     var hijo = ReproductionService.Reproduce(world, creature, pareja);
-                    world.Creatures.Add(hijo);
+                    newCreatures.Add(hijo);
                     world.CreaturePositions[$"{hijo.Position.X},{hijo.Position.Y}"] = hijo.Id.ToString();
                     Console.WriteLine($"¡{creature.Id} se reprodujo con {pareja.Id}!");
                 }
