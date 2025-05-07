@@ -46,7 +46,7 @@ public class VisionService : IVisionService
 
         if (_world.CreaturePositions.TryGetValue(key, out var creatureId))
         {
-            return _world.Creatures.FirstOrDefault(c => c.Id.ToString() == creatureId);
+            return _world.MapObjects.OfType<Creature>().FirstOrDefault(c => c.Id.ToString() == creatureId);
         }
 
         return null;
