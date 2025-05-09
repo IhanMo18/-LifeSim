@@ -6,7 +6,6 @@ public class Food(Position position) : MapObject(position)
 {
     public void Eat(Creature creature)
     {
-        // creature.Dna.Stats.Strength += 10;
         creature.Hunger -= 20;
         creature.Health += 10;
         

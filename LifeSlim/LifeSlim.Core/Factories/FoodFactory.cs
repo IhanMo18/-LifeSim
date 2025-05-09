@@ -4,11 +4,11 @@ using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Factories;
 
-public class FoodFactorie : IFoodFactorie
+public class FoodFactory : IFoodFactory
 {
     private readonly World _world;
 
-    public FoodFactorie(World world)
+    public FoodFactory(World world)
     {
         _world = world;
     }
