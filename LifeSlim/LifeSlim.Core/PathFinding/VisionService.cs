@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Pathfinding;
 
-public  static class VisionService
+public class VisionService : IVisionService
 {
 
-    public static List<Creature> FindCreaturesByVision(World world, Creature creature, int vision)
+    public List<MapObject?> FindNearbyMapObjects(World world, Creature creature, int vision)
     {
-        var creaturesFindList = new List<Creature>();
+        var nearObjects = new List<MapObject?>();
 
         for (int dx = -vision; dx <= vision; dx++)
         {
@@ -27,24 +28,16 @@ public  static class VisionService
                     continue;
 
                 // Obtener criatura u objeto en la posición actual
-                Creature foundCreature = world.GetCreatureAt(x, y);
+                var foundMapObject = world.GetObjectAt(x, y);
                 
-                if (foundCreature !=  null)
+                if (foundMapObject !=  null)
                 {
-                    creaturesFindList.Add(foundCreature);
+                    nearObjects.Add(foundMapObject);
                 }
-
-
-                // Si también deseas incluir objetos, descomenta y adapta esta parte:
-                // var foundObject = world.GetObjectAtPosition(x, y);
-                // if (foundObject != null)
-                // {
-                //     objetosVisibles.Add(foundObject);
-                // }
             }
         }
-
-        return creaturesFindList;
+        
+        return nearObjects;
     }
 
 

@@ -1,43 +1,94 @@
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.Movement;
-using Microsoft.Extensions.DependencyInjection;
+
+namespace LifeSlim.Core.Factories;
 
 public class MovementStrategyFactory
 {
     private readonly IMovementStrategy _random;
     private readonly IMovementStrategy _flee;
-    private readonly IMovementStrategy _forage;
-    private readonly IMovementStrategy _attack;
-    private readonly IServiceProvider _serviceProvider;
+    private IMovementStrategy _forage;
+    private IMovementStrategy _hunter;
+    private readonly ICombatStrategyFactory _combatStrategyFactory;
+    private readonly World _world;
+    private readonly IVisionService _vision;
 
-    public MovementStrategyFactory(IServiceProvider serviceProvider)
+    public MovementStrategyFactory(IServiceProvider serviceProvider, IVisionService vision, ICombatStrategyFactory combatStrategyFactory, World world)
     {
+        _vision = vision;
+        _combatStrategyFactory = combatStrategyFactory;
+        _world = world;
         _random = new RandomMovementStrategy();
         _flee = new FleeStrategy();
-        _forage = new ForageStrategy();
-        _serviceProvider = serviceProvider;
     }
 
     public IMovementStrategy GetStrategy(Creature creature)
     {
         
-        if (creature.Health < 30)
+        var nearObjects = _vision.FindNearbyMapObjects(_world,creature,creature.Dna.Stats.Vision);
+
+        if (nearObjects.Count == 0)
         {
-            Console.WriteLine("Movimiento de huir");
+            return _random;
+        }
+        
+        //Revisamos si debe huir
+        var hunters = nearObjects
+            .OfType<Creature>()
+            .Where(c => c != creature && c.CanEngage(creature) && !c.ShouldSubmitTo(creature) && !c.ShouldFleeFrom(creature))
+            .ToList();
+
+        if (hunters.Count != 0)
+        {
             return _flee;
         }
+        
+        //Revisamos si hay presas en vision
+        var allPrey = nearObjects
+            .OfType<Creature>()
+            .Where(c => c != creature && !c.CanEngage(creature) && c.ShouldFleeFrom(creature) && c.ShouldSubmitTo(creature))
+            .ToList();
 
-        if (creature.Hunger > 70)
+        if (allPrey.Count != 0)
         {
-            Console.WriteLine("Movimiento hambre");
+            var closestPrey = allPrey
+                .OrderBy(p => Math.Abs(p.Position.X - creature.Position.X) +
+                              Math.Abs(p.Position.Y - creature.Position.Y))
+                .First();
+
+            Console.WriteLine($"Hunting {creature.Id} started to hunt {closestPrey.Id}");
+            _hunter = new HuntStrategy(closestPrey);
+            return _hunter;
+        }
+        
+        //Checkeamos que pueda comer chill
+        if (nearObjects.OfType<Food>().Count() == 0)
+        {
+            return _random;
+        }
+        
+        var closestFood = nearObjects
+            .OfType<Food>()
+            .OrderBy(f => Math.Abs(f.Position.X - creature.Position.X) + 
+                          Math.Abs(f.Position.Y - creature.Position.Y))
+            .First();
+
+        if (closestFood != null)
+        {
+            Console.WriteLine($"Forage {creature.Id} tracking food {closestFood.Id}");
+            _forage = new ForageStrategy(closestFood);
             return _forage;
         }
-
-      
-        using var scope = _serviceProvider.CreateScope();
-        var visionService = scope.ServiceProvider.GetRequiredService<IVisionService>();
-        Console.WriteLine("Movimiento de caza");
-        return new HuntStrategy(visionService);
+        // _combatStrategyFactory.GetCombatStrategy(creature, nearObjects!);
+        
+        // if (creature.Health < 30)
+        // {
+        //     Console.WriteLine("Movimiento de huir");
+        //     return _flee;
+        // }
+        return _random;
     }
+    
+    
 }

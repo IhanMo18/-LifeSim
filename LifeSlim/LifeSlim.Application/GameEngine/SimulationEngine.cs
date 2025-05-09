@@ -42,9 +42,15 @@ public class SimulationEngine
         var scope = serviceProvider.CreateScope();
         var dataWorld = scope.ServiceProvider.GetRequiredService<IDataWorld>();
         // _eventSystem.EventApply();
-        _objectsSystem.AddCreatures(2);
+        _objectsSystem.AddCreatures(3);
         _objectsSystem.RemoveCreatures();
-        _movementSystem.MoveCreaturesInWorld(_world);
+        await _movementSystem.MoveCreaturesInWorld(_world);
+
+        foreach (var c in _world.MapObjects.OfType<Creature>())
+        {
+            _mutationSystem.Mutate(c);    
+        }
+        
         await _hubContext.Clients.All.SendAsync("ReceiveUpdate", _world);
         await dataWorld.Save();
         Console.WriteLine($"🕒 Año {_world.YearTime}...");

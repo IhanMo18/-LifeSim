@@ -12,7 +12,7 @@ public class Creature : MapObject
     }
     
     public int Health { get; set; } = 100;
-    public int Hunger { get; set; } = 0;
+    public int Hunger { get; set; } = 71;
     public Dna Dna { get; set; }
     private int Age { get; set; } = 0;
     public bool IsAlive { get; set; } = true;

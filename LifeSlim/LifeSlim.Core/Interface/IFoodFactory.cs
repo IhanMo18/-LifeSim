@@ -3,7 +3,7 @@ using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Interface;
 
-public interface IFoodFactorie
+public interface IFoodFactory
 {
     Food CreateFood();
 }

@@ -1,5 +1,4 @@
 using LifeSlim.Core.Builders;
-using LifeSlim.Core.Factories;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 
@@ -7,15 +6,15 @@ namespace LifeSlim.Core.System;
 
 public class ObjectsSystem
 {
-    public readonly World _world;
-    public readonly ICreatureFactory _creatureFactory;
-    private readonly IFoodFactorie _foodFactorie;
+    private readonly World _world;
+    private readonly ICreatureFactory _creatureFactory;
+    private readonly IFoodFactory _foodFactory;
 
-    public ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodFactorie foodFactorie)
+    public ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodFactory foodFactory)
     {
         _world = world;
         _creatureFactory = creatureFactory;
-        _foodFactorie = foodFactorie;
+        _foodFactory = foodFactory;
     }
 
 
@@ -43,7 +42,7 @@ public class ObjectsSystem
 
         while (_world.MapObjects.OfType<Food>().Count() < _world.MapObjects.OfType<Creature>().Count() * 2)
         {
-            var food = _foodFactorie.CreateFood();
+            var food = _foodFactory.CreateFood();
             _world.MapObjects.Add(food);
             _world.CreaturePositions.Add($"{food.Position.X},{food.Position.Y}", food.Id.ToString());
             Console.WriteLine("EL COUNT de Food ES " + _world.MapObjects.OfType<Food>().Count());

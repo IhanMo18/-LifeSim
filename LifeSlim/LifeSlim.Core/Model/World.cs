@@ -34,6 +34,11 @@ public class World
                 .FirstOrDefault(c => c.Position.X == x && c.Position.Y == y && c.IsAlive);
         }
 
+        public MapObject? GetObjectAt(int x, int y)
+        {
+            return MapObjects // 👈 Filtra solo Creatures
+                .FirstOrDefault(c => c.Position.X == x && c.Position.Y == y);
+        }
     
         public Position GenerateFreePosition()
         {

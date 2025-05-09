@@ -3,13 +3,13 @@ using LifeSlim.Application;
 using LifeSlim.Application.GameEngine;
 using LifeSlim.Application.Hubs;
 using LifeSlim.Application.Interfaces;
-using LifeSlim.Application.Service;
 using LifeSlim.Application.UseCases.Race.CommandsHandler;
 using LifeSlim.Core.Factories;
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 using LifeSlim.Core.Movement;
 using LifeSlim.Core.Mutations;
+using LifeSlim.Core.Pathfinding;
 using LifeSlim.Core.System;
 using LifeSlim.Infrastructure;
 using LifeSlim.Infrastructure.Data;
@@ -25,7 +25,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSignalR(options => options.EnableDetailedErrors = true );
 
 
-builder.Services.AddSingleton<World>(new World(30, 30)); // Mundo único y compartido
+builder.Services.AddSingleton<World>(new World(20, 20)); // Mundo único y compartido
 
 builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
     .FromAssembliesOf(typeof(CreateRaceCommandHandler))
@@ -36,7 +36,9 @@ builder.Services.Scan(scan => scan  //Registra todos los CommandsHandlers
 builder.Services.AddScoped<ICommandDispatcher,CommandDispatcher>();
 builder.Services.AddSingleton<ICreatureFactory, CreatureFactory>();
 builder.Services.AddSingleton<IMutationFactory, MutationFactory>();
-builder.Services.AddSingleton<IFoodFactorie, FoodFactorie>();
+builder.Services.AddSingleton<IFoodFactory, FoodFactory>();
+builder.Services.AddSingleton<IVisionService, VisionService>();
+builder.Services.AddSingleton<ICombatStrategyFactory,CombatStrategyFactory>();
 builder.Services.AddSingleton<MovementStrategyFactory>();
 builder.Services.AddSingleton<MutationStrategyFactory>();
 builder.Services.AddSingleton<MutationSystem>();
@@ -46,7 +48,6 @@ builder.Services.AddSingleton<ObjectsSystem>();
 builder.Services.AddSingleton<SimulationEngine>();
 builder.Services.AddScoped<ISerializer, JsonSerialize>();
 builder.Services.AddScoped<IDataWorld, DataWorld>();
-builder.Services.AddScoped<IVisionService, VisionService>();
 builder.Services.AddHostedService<SimulationHostedService>();
 
 // En Program.cs

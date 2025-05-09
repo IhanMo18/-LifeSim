@@ -6,5 +6,5 @@ namespace LifeSlim.Core.Interface;
 public interface IVisionService
 {
 
-        public Task<List<Creature?>> FindCreaturesByVision(World world, Creature creature, int vision);
+        public List<MapObject?> FindNearbyMapObjects(World world, Creature creature, int vision);
 }
