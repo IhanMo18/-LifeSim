@@ -6,10 +6,6 @@ namespace LifeSlim.Core.Factories;
 
 public class MovementStrategyFactory
 {
-    private readonly IMovementStrategy _random;
-    private readonly IMovementStrategy _flee;
-    private IMovementStrategy _forage;
-    private IMovementStrategy _hunter;
     private readonly ICombatStrategyFactory _combatStrategyFactory;
     private readonly World _world;
     private readonly IVisionService _vision;
@@ -19,8 +15,6 @@ public class MovementStrategyFactory
         _vision = vision;
         _combatStrategyFactory = combatStrategyFactory;
         _world = world;
-        _random = new RandomMovementStrategy();
-        _flee = new FleeStrategy();
     }
 
     public IMovementStrategy GetStrategy(Creature creature)
@@ -30,18 +24,20 @@ public class MovementStrategyFactory
 
         if (nearObjects.Count == 0)
         {
-            return _random;
+            return new RandomMovementStrategy();
         }
         
         //Revisamos si debe huir
         var hunters = nearObjects
             .OfType<Creature>()
-            .Where(c => c != creature && c.CanEngage(creature) && !c.ShouldSubmitTo(creature) && !c.ShouldFleeFrom(creature))
+            .Where(c => c != creature && c.CanEngage(creature) && !c.ShouldSubmitTo(creature) && c.ShouldFleeFrom(creature))
             .ToList();
-
-        if (hunters.Count != 0)
+        
+        
+        if (hunters.Count > 0)
         {
-            return _flee;
+            Console.WriteLine("Huyendo de "+hunters.First().Id);
+            return new FleeStrategy();
         }
         
         //Revisamos si hay presas en vision
@@ -58,14 +54,13 @@ public class MovementStrategyFactory
                 .First();
 
             Console.WriteLine($"Hunting {creature.Id} started to hunt {closestPrey.Id}");
-            _hunter = new HuntStrategy(closestPrey);
-            return _hunter;
+            return new HuntStrategy(closestPrey);
         }
         
         //Checkeamos que pueda comer chill
         if (nearObjects.OfType<Food>().Count() == 0)
         {
-            return _random;
+            return new RandomMovementStrategy();
         }
         
         var closestFood = nearObjects
@@ -77,8 +72,7 @@ public class MovementStrategyFactory
         if (closestFood != null)
         {
             Console.WriteLine($"Forage {creature.Id} tracking food {closestFood.Id}");
-            _forage = new ForageStrategy(closestFood);
-            return _forage;
+            return new ForageStrategy(closestFood); // Nueva instancia cada vez
         }
         // _combatStrategyFactory.GetCombatStrategy(creature, nearObjects!);
         
@@ -87,7 +81,7 @@ public class MovementStrategyFactory
         //     Console.WriteLine("Movimiento de huir");
         //     return _flee;
         // }
-        return _random;
+        return new RandomMovementStrategy();
     }
     
     

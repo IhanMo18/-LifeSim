@@ -4,11 +4,16 @@ namespace LifeSlim.Core.Model;
 
 public class Food(Position position) : MapObject(position)
 {
+    public bool IsConsumed { get; private set; }
+
     public void Eat(Creature creature)
     {
-        creature.Hunger -= 20;
-        creature.Health += 10;
+        if (IsConsumed) return;// Bloquear para otros movimientos
+        creature.Hunger -= 30;
+        creature.Health += 20;
         
-        Console.WriteLine("El hambre ha disminuido "+creature.Hunger+",la salud aumento "+creature.Health);
+        Console.WriteLine($"[CONSUMIENDO] Creature {creature.Id} ate food {Id}");
     }
+
+    public void MarkAsConsumed() => IsConsumed = true;
 }

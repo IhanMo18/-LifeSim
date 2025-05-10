@@ -16,7 +16,12 @@ public class ObjectsSystem
         _creatureFactory = creatureFactory;
         _foodFactory = foodFactory;
     }
-
+    private static int RandomBetween(int a, int b)
+    {
+        var min = Math.Min(a, b);
+        var max = Math.Max(a, b);
+        return Random.Shared.Next(min, max + 1);
+    }
 
     public void AddCreatures(int amount)
     {
@@ -26,26 +31,29 @@ public class ObjectsSystem
             {
                 var race = new RaceBuilder().WhitName("Orco")
                     .WhitColorCode("#fffef")
-                    .WhitStats(1, 1, 1, 1, 1)
+                    .WhitStats(RandomBetween(1,10), RandomBetween(1,10), RandomBetween(1,10), RandomBetween(1,10), RandomBetween(1,10))
                     .Build();
 
                 var creature = _creatureFactory.CreateCreature(_world, race);
                 _world.MapObjects.Add(creature);
                 _world.CreaturePositions.Add($"{creature.Position.X},{creature.Position.Y}", creature.Id.ToString());
-                Console.WriteLine("EL COUNT De Criatura ES " + _world.MapObjects.OfType<Creature>().Count());
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al crear criatura: {ex.Message}");
             }
         }
+        
 
-        while (_world.MapObjects.OfType<Food>().Count() < _world.MapObjects.OfType<Creature>().Count() * 2)
+        if (!_world.MapObjects.OfType<Food>().Any())
         {
-            var food = _foodFactory.CreateFood();
-            _world.MapObjects.Add(food);
-            _world.CreaturePositions.Add($"{food.Position.X},{food.Position.Y}", food.Id.ToString());
-            Console.WriteLine("EL COUNT de Food ES " + _world.MapObjects.OfType<Food>().Count());
+            int foodCount = _world.MapObjects.OfType<Creature>().Count() * 2;
+            for (int i = 0; i < foodCount; i++)
+            {
+                var food = _foodFactory.CreateFood();
+                _world.MapObjects.Add(food);
+                _world.CreaturePositions.Add($"{food.Position.X},{food.Position.Y}", food.Id.ToString());
+            }
         }
 
         for (var i = 0; i < _world.Width; i++)
@@ -56,15 +64,8 @@ public class ObjectsSystem
                 {
                     var mapObject = _world.MapObjects.FirstOrDefault(mo =>
                         string.Equals($"{mo.Id}", mapObjectId));
-                    
-                    if (mapObject?.GetType().Name == "Food")
-                    {
-                        Console.Write("#");    
-                    }
-                    else
-                    {
-                        Console.Write("*");    
-                    }
+
+                    Console.Write(mapObject?.GetType().Name == "Food" ? "#" : "*");
                 }
                 Console.Write("-");    
             }

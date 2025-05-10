@@ -42,10 +42,11 @@ public class SimulationEngine
         var scope = serviceProvider.CreateScope();
         var dataWorld = scope.ServiceProvider.GetRequiredService<IDataWorld>();
         // _eventSystem.EventApply();
-        _objectsSystem.AddCreatures(3);
+        _objectsSystem.AddCreatures(7);
         _objectsSystem.RemoveCreatures();
+        Console.WriteLine($"{_world.MapObjects.Count}");
         await _movementSystem.MoveCreaturesInWorld(_world);
-
+        Console.WriteLine($"{_world.MapObjects.Count}");
         foreach (var c in _world.MapObjects.OfType<Creature>())
         {
             _mutationSystem.Mutate(c);    

@@ -19,6 +19,7 @@ public static class ReproductionSystem
         };
 
         var criaturasCercanas = new List<Creature>();
+        
         foreach (var pos in posicionesAdyacentes)
         {
             if (pos.X >= 0 && pos.X < world.Width && pos.Y >= 0 && pos.Y < world.Height)
