@@ -65,27 +65,21 @@ public class ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodF
     
     public void ShowMap()
     {
-        for (int j = 0; j < world.Height; j++)
+        for (int y = 0; y < world.Height; y++)
         {
-            for (int i = 0; i < world.Width; i++)
+            for (int x = 0; x < world.Width; x++)
             {
-                if (world.CreaturePositions.TryGetValue($"{i},{j}", out var mapObjectId))
-                {
-                    var mapObject = world.MapObjects.FirstOrDefault(mo => mo.Id.ToString() == mapObjectId);
+                var mapObject = world.MapObjects
+                    .FirstOrDefault(obj => obj.Position.X == x && obj.Position.Y == y);
 
-                    if (mapObject != null)
-                    {
-                        if (mapObject.ObjType == "Food")
-                            Console.Write("#");
-                        else if (mapObject.ObjType== "Creature")
-                            Console.Write("*");
-                        else
-                            Console.Write("?");
-                    }
+                if (mapObject != null)
+                {
+                    if (mapObject.ObjType == "Creature")
+                        Console.Write("*");
+                    else if (mapObject.ObjType == "Food")
+                        Console.Write("#");
                     else
-                    {
                         Console.Write("?");
-                    }
                 }
                 else
                 {
@@ -95,6 +89,7 @@ public class ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodF
             Console.WriteLine();
         }
     }
+
 
 
 }
