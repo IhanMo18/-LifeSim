@@ -1,8 +1,7 @@
-
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
 
-namespace LifeSlim.Core.Pathfinding;
+namespace LifeSlim.Core.Services;
 
 public class VisionService : IVisionService
 {

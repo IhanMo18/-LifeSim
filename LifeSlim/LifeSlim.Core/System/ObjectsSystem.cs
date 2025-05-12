@@ -4,18 +4,8 @@ using LifeSlim.Core.Model;
 
 namespace LifeSlim.Core.System;
 
-public class ObjectsSystem
+public class ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodFactory foodFactory)
 {
-    private readonly World _world;
-    private readonly ICreatureFactory _creatureFactory;
-    private readonly IFoodFactory _foodFactory;
-
-    public ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodFactory foodFactory)
-    {
-        _world = world;
-        _creatureFactory = creatureFactory;
-        _foodFactory = foodFactory;
-    }
     private static int RandomBetween(int a, int b)
     {
         var min = Math.Min(a, b);
@@ -25,7 +15,7 @@ public class ObjectsSystem
 
     public void AddCreatures(int amount)
     {
-        while (_world.MapObjects.OfType<Creature>().Count() < amount)
+        while (world.MapObjects.OfType<Creature>().Count() < amount)
         {
             try
             {
@@ -34,49 +24,77 @@ public class ObjectsSystem
                     .WhitStats(RandomBetween(1,10), RandomBetween(1,10), RandomBetween(1,10), RandomBetween(1,10), RandomBetween(1,10))
                     .Build();
 
-                var creature = _creatureFactory.CreateCreature(_world, race);
-                _world.MapObjects.Add(creature);
-                _world.CreaturePositions.Add($"{creature.Position.X},{creature.Position.Y}", creature.Id.ToString());
+                var creature = creatureFactory.CreateCreature(world, race);
+                world.MapObjects.Add(creature);
+                world.CreaturePositions.Add($"{creature.Position.X},{creature.Position.Y}", creature.Id.ToString());
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al crear criatura: {ex.Message}");
             }
         }
-        
-
-        if (!_world.MapObjects.OfType<Food>().Any())
-        {
-            int foodCount = _world.MapObjects.OfType<Creature>().Count() * 2;
-            for (int i = 0; i < foodCount; i++)
-            {
-                var food = _foodFactory.CreateFood();
-                _world.MapObjects.Add(food);
-                _world.CreaturePositions.Add($"{food.Position.X},{food.Position.Y}", food.Id.ToString());
-            }
-        }
-
-        for (var i = 0; i < _world.Width; i++)
-        {
-            for (var j = 0; j < _world.Height; j++)
-            {
-                if (_world.CreaturePositions.TryGetValue($"{i},{j}", out var mapObjectId))
-                {
-                    var mapObject = _world.MapObjects.FirstOrDefault(mo =>
-                        string.Equals($"{mo.Id}", mapObjectId));
-
-                    Console.Write(mapObject?.GetType().Name == "Food" ? "#" : "*");
-                }
-                Console.Write("-");    
-            }
-
-            Console.WriteLine();
-        }
+        AddFoodByCreature();
     }
 
     public void RemoveCreatures()
     {
-        _world.MapObjects.OfType<Creature>().ToList().RemoveAll(c => c.IsAlive==false);
+        world.MapObjects.OfType<Creature>().ToList().RemoveAll(c => c.IsAlive==false);
     }
+    
+    private void AddFoodByCreature()
+    {
+        if (world.MapObjects.OfType<Food>().Any()) return;
+        var foodCount = world.MapObjects.OfType<Creature>().Count() * 2;
+        
+        for (var i = 0; i < foodCount; i++)
+        {
+            try
+            {
+                var food = foodFactory.CreateFood();
+                world.MapObjects.Add(food);
+                world.CreaturePositions.Add($"{food.Position.X},{food.Position.Y}", food.Id.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error al crear la comida : {e.Message}");
+            }
+            
+        }
+    }
+    
+    
+    public void ShowMap()
+    {
+        for (int j = 0; j < world.Height; j++)
+        {
+            for (int i = 0; i < world.Width; i++)
+            {
+                if (world.CreaturePositions.TryGetValue($"{i},{j}", out var mapObjectId))
+                {
+                    var mapObject = world.MapObjects.FirstOrDefault(mo => mo.Id.ToString() == mapObjectId);
+
+                    if (mapObject != null)
+                    {
+                        if (mapObject.ObjType == "Food")
+                            Console.Write("#");
+                        else if (mapObject.ObjType== "Creature")
+                            Console.Write("*");
+                        else
+                            Console.Write("?");
+                    }
+                    else
+                    {
+                        Console.Write("?");
+                    }
+                }
+                else
+                {
+                    Console.Write("-");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
 
 }

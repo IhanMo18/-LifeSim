@@ -1,7 +1,6 @@
 
 using JsonSubTypes;
 using LifeSlim.Core.ValueObjects;
-using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
 
 namespace LifeSlim.Core.Model;
