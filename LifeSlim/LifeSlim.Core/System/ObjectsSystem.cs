@@ -74,12 +74,18 @@ public class ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodF
 
                 if (mapObject != null)
                 {
-                    if (mapObject.ObjType == "Creature")
-                        Console.Write("*");
-                    else if (mapObject.ObjType == "Food")
-                        Console.Write("#");
-                    else
-                        Console.Write("?");
+                    switch (mapObject.ObjType)
+                    {
+                        case "Creature":
+                            Console.Write("*");
+                            break;
+                        case "Food":
+                            Console.Write("#");
+                            break;
+                        default:
+                            Console.Write("?");
+                            break;
+                    }
                 }
                 else
                 {
