@@ -4,6 +4,8 @@ namespace LifeSlim.Core.Events;
 
 public class AcidRainEvent(int triggerYear) : WorldEvent("AcidRain", triggerYear)
 {
+    
+    public override string EventType=>"AcidRain";
     public override void Apply(World world)
     {
         Console.WriteLine("☣️ Lluvia Ácida! Todas las criaturas sufren daño...");

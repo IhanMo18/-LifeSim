@@ -3,7 +3,7 @@ using LifeSlim.Core.Model;
 
 namespace LifeSlim.Core.EventLoading;
 
-public class EventLoader
+public static class EventLoader
 {
     public static void LoadDefaultEvents(World world)
     {

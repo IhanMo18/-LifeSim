@@ -24,7 +24,9 @@ public class SimulationHostedService : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await _engine.Tick(_serviceProvider);
+            var scope = _serviceProvider.CreateScope();
+            var dataWorld = scope.ServiceProvider.GetRequiredService<IDataWorld>();
+            await _engine.Tick(dataWorld);
             Console.WriteLine("Tick ejecutado");
             await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken); 
         }

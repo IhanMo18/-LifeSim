@@ -11,4 +11,6 @@ public class Food(Position position) : MapObject(position)
         
         Console.WriteLine("El hambre ha disminuido "+creature.Hunger+",la salud aumento "+creature.Health);
     }
+
+    public override string ObjType=>"Food";
 }

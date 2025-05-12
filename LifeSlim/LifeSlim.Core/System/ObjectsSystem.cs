@@ -9,12 +9,14 @@ public class ObjectsSystem
     private readonly World _world;
     private readonly ICreatureFactory _creatureFactory;
     private readonly IFoodFactory _foodFactory;
+    private readonly MutationSystem _mutationSystem;
 
-    public ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodFactory foodFactory)
+    public ObjectsSystem(World world, ICreatureFactory creatureFactory, IFoodFactory foodFactory,MutationSystem mutationSystem)
     {
         _world = world;
         _creatureFactory = creatureFactory;
         _foodFactory = foodFactory;
+        _mutationSystem = mutationSystem;
     }
 
 
@@ -47,35 +49,55 @@ public class ObjectsSystem
             _world.CreaturePositions.Add($"{food.Position.X},{food.Position.Y}", food.Id.ToString());
             Console.WriteLine("EL COUNT de Food ES " + _world.MapObjects.OfType<Food>().Count());
         }
-
-        for (var i = 0; i < _world.Width; i++)
-        {
-            for (var j = 0; j < _world.Height; j++)
-            {
-                if (_world.CreaturePositions.TryGetValue($"{i},{j}", out var mapObjectId))
-                {
-                    var mapObject = _world.MapObjects.FirstOrDefault(mo =>
-                        string.Equals($"{mo.Id}", mapObjectId));
-                    
-                    if (mapObject?.GetType().Name == "Food")
-                    {
-                        Console.Write("#");    
-                    }
-                    else
-                    {
-                        Console.Write("*");    
-                    }
-                }
-                Console.Write("-");    
-            }
-
-            Console.WriteLine();
-        }
     }
 
     public void RemoveCreatures()
     {
         _world.MapObjects.OfType<Creature>().ToList().RemoveAll(c => c.IsAlive==false);
     }
+
+    public void Mutate()
+    {
+        foreach (var c in _world.MapObjects.OfType<Creature>())
+        {
+            _mutationSystem.Mutate(c);    
+        }
+    }
+
+    public void ShowCreaturesInMap()
+    {
+        for (var i = 0; i < _world.Width; i++)
+        {
+            for (var j = 0; j < _world.Height; j++)
+            {
+                string key = $"{i},{j}";
+
+                if (_world.CreaturePositions.TryGetValue(key, out var mapObjectId))
+                {
+                    var mapObject = _world.MapObjects.FirstOrDefault(mo => mo.Id.ToString() == mapObjectId);
+                    if (mapObject?.GetType() == typeof(Food))
+                    {
+                        Console.Write("#");
+                    }
+                    else if (mapObject?.GetType() == typeof(Creature))
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write("?");
+                    }
+                }
+                else
+                {
+                    Console.Write("-");
+                }
+            }
+
+            Console.WriteLine();
+        }
+    }
+
+
 
 }

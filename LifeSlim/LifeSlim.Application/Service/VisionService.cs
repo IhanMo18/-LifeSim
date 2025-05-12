@@ -13,9 +13,9 @@ public class VisionService : IVisionService
         _world = world;
     }
 
-    public Task<List<Creature>> FindCreaturesByVision(World world, Creature creature, int vision)
+    public List<MapObject> FindNearbyMapObjects(World world, Creature creature, int vision)
     {
-        var creatures = new List<Creature>();
+        var creatures = new List<MapObject>();
 
         for (int dx = -vision; dx <= vision; dx++)
         {
@@ -37,7 +37,7 @@ public class VisionService : IVisionService
             }
         }
 
-        return Task.FromResult(creatures);
+        return creatures;
     }
 
     private Creature? GetCreatureInPosition(Position position)

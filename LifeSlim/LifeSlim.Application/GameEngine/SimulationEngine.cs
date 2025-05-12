@@ -17,42 +17,59 @@ namespace LifeSlim.Application.GameEngine;
 public class SimulationEngine
 {
     private readonly MovementSystem _movementSystem;
-    private readonly MutationSystem _mutationSystem;
-    private readonly World _world;
+    private  World _world;
     private readonly ObjectsSystem _objectsSystem;
     private readonly IHubContext<GameHub> _hubContext;
     private readonly EventSystem _eventSystem;
+    private bool _isWorldLoaded = false;
     
     
     
     public SimulationEngine(World world, MovementSystem movementSystem,EventSystem eventSystem
-        ,ObjectsSystem objectsSystem,MutationSystem mutationSystem,
-        IHubContext<GameHub> hubContext)
+        ,ObjectsSystem objectsSystem,IHubContext<GameHub> hubContext)
     {
         _world = world;
         _movementSystem = movementSystem;
         _objectsSystem = objectsSystem;
-        _mutationSystem = mutationSystem;
         _eventSystem = eventSystem;
         _hubContext = hubContext;
     }
 
-    public async Task Tick(IServiceProvider serviceProvider)
+    public async Task Tick(IDataWorld dataWorld)
     {
-        var scope = serviceProvider.CreateScope();
-        var dataWorld = scope.ServiceProvider.GetRequiredService<IDataWorld>();
-        // _eventSystem.EventApply();
-        _objectsSystem.AddCreatures(3);
+        if (!_isWorldLoaded) await LoadWorld(dataWorld); 
+        
+        _eventSystem.EventApply();
         _objectsSystem.RemoveCreatures();
         await _movementSystem.MoveCreaturesInWorld(_world);
-
-        foreach (var c in _world.MapObjects.OfType<Creature>())
-        {
-            _mutationSystem.Mutate(c);    
-        }
+        _objectsSystem.ShowCreaturesInMap();
+        _objectsSystem.Mutate();
+       
         
         await _hubContext.Clients.All.SendAsync("ReceiveUpdate", _world);
         await dataWorld.Save();
         Console.WriteLine($"🕒 Año {_world.YearTime}...");
+    }
+
+
+    private async Task LoadWorld(IDataWorld dataWorld)
+    {
+        var newWorld = await dataWorld.GetWorldFromJson();
+        
+        if (newWorld != null)
+        { 
+            Console.WriteLine("Mundo cargado"); 
+            _world.YearTime = newWorld.YearTime; 
+            _world.MapObjects = newWorld.MapObjects;
+            _world.CreaturePositions = newWorld.CreaturePositions;
+            _world.YearTime = newWorld.YearTime;
+            _world.ScheduledEvents = newWorld.ScheduledEvents;
+            _isWorldLoaded = true;
+        }
+        else
+        {
+            Console.WriteLine("Cree criaturas"); 
+            _objectsSystem.AddCreatures(3);
+        }
     }
 }

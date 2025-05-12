@@ -1,8 +1,13 @@
+using JsonSubTypes;
 using LifeSlim.Core.Events;
-using LifeSlim.Core.System;
 using LifeSlim.Core.ValueObjects;
+using Newtonsoft.Json;
 
 namespace LifeSlim.Core.Model;
+
+[JsonConverter(typeof(JsonSubtypes), "ObjType")]
+[JsonSubtypes.KnownSubType(typeof(Food), "Food")]
+[JsonSubtypes.KnownSubType(typeof(Creature), "Creature")]
 public class World
     {
         public World(int width, int height)
@@ -25,15 +30,7 @@ public class World
         public int YearTime { get; set; }
         public List<WorldEvent> ScheduledEvents { get; set; } = new();
         
-        // Dictionary<(int, int), List<object>> worldMap = new Dictionary<(int, int), List<object>>();
-    
-        public Creature? GetCreatureAt(int x, int y)
-        {
-            return MapObjects
-                .OfType<Creature>() // 👈 Filtra solo Creatures
-                .FirstOrDefault(c => c.Position.X == x && c.Position.Y == y && c.IsAlive);
-        }
-
+        
         public MapObject? GetObjectAt(int x, int y)
         {
             return MapObjects // 👈 Filtra solo Creatures
@@ -61,33 +58,4 @@ public class World
             //return grid[x, y] != null;
         }
         
-        
-        public bool MoveCreature(Creature creature, int newX, int newY)
-        {
-            var currentPos = creature.Position;
-
-            // Validaciones de mundo
-            if (newX < 0 || newX >= Width || newY < 0 || newY >= Height)
-                return false;
-
-            // Actualiza grid y worldMap si aplica
-            CreaturePositions[$"{currentPos.X},{currentPos.Y}"] = "";
-            CreaturePositions[$"{currentPos.X},{currentPos.Y}"] = creature.Id.ToString(); //quiero guardar los id de las criaturas en las posiciones 
-
-            var oldKey = $"{currentPos.X},{currentPos.Y}";
-            // var newKey = (newX, newY);
-
-            if (CreaturePositions.ContainsKey(oldKey))
-                CreaturePositions.Remove(oldKey);
-
-            // if (!worldMap.ContainsKey(newKey))
-            //     worldMap[newKey] = new List<object>();
-
-            // worldMap[newKey].Add(creature);
-
-            // Actualiza posición de la criatura
-            creature.Position = new Position(x:newX, y:newY);
-
-            return true;
-        }
     }

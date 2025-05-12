@@ -21,6 +21,8 @@ public class Creature : MapObject
     public Guid RaceId { get; private set; }
     
     public (int X, int Y) CurrentDirection { get; private set; }
+    
+    public override string ObjType=>"Creature";
 
     public void AgeOneYear()
     {
