@@ -4,5 +4,5 @@ namespace LifeSlim.Core.Interface;
 
 public interface ICombatStrategyFactory
 {
-    ICombatStrategy GetCombatStrategy(Creature creature,List<MapObject> mapObjects);
+    ICombatStrategy GetCombatStrategy(Creature creature,Creature adjacentCreature);
 }

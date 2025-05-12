@@ -11,8 +11,8 @@ public class Creature : MapObject
         Dna = dna;
     }
     
-    public int Health { get; set; } = 100;
-    public int Hunger { get; set; } = 71;
+    public int Health { get; set; } = RandomBetween(1,80);
+    public int Hunger { get; set; } = RandomBetween(1,100);
     public Dna Dna { get; set; }
     private int Age { get; set; } = 0;
     public bool IsAlive { get; set; } = true;
@@ -69,5 +69,10 @@ public class Creature : MapObject
         Position = newPosition;
     }
     
-
+    private static int RandomBetween(int a, int b)
+    {
+        var min = Math.Min(a, b);
+        var max = Math.Max(a, b);
+        return Random.Shared.Next(min, max + 1);
+    }
 }

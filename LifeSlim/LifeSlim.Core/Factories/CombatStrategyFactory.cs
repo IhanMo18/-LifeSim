@@ -16,19 +16,13 @@ public class CombatStrategyFactory : ICombatStrategyFactory
     }
 
 
-    public ICombatStrategy GetCombatStrategy(Creature creature,List<MapObject> nearbyObjects)
+    public ICombatStrategy GetCombatStrategy(Creature creature,Creature adjacentCreature)
     {
-        foreach (var presuntEnemy in nearbyObjects.OfType<Creature>())
+        if (creature.CanEngage(adjacentCreature) && adjacentCreature.ShouldSubmitTo(creature))
         {
-            
-                return _submittingStrategy;
-            
-            // if (creature.CanEngage(presuntEnemy))
-            // {
-            //     return _fightingStrategy;
-            // }
+            return _submittingStrategy;
         }
-
+        
         return _fightingStrategy;
     }
 }

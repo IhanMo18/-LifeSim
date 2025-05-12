@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+
 using LifeSlim.Core.Interface;
 using LifeSlim.Core.Model;
-using LifeSlim.Core.ValueObjects;
 
 namespace LifeSlim.Core.Pathfinding;
 
@@ -27,10 +26,13 @@ public class VisionService : IVisionService
                 if (x < 0 || x >= world.Width || y < 0 || y >= world.Height)
                     continue;
 
-                // Obtener criatura u objeto en la posición actual
                 var foundMapObject = world.GetObjectAt(x, y);
+            
+                // 👇 Filtrar comida consumida o en proceso de consumo
+                if (foundMapObject is Food { IsConsumed: true })
+                    continue;
                 
-                if (foundMapObject !=  null)
+                if (foundMapObject != null)
                 {
                     nearObjects.Add(foundMapObject);
                 }
